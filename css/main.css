@@ -87,8 +87,11 @@
     flex-basis: 0;
     flex-grow: 1;
     padding: 0.5rem;
-    padding-top: 9rem;
-    margin-bottom: 2rem;
+
+}
+
+.deck>.perk-card:first-child {
+    margin-top: 0rem;
 }
 
 /*Cards*/
@@ -150,6 +153,7 @@
 
 /*Card selections*/
 #card-selections {
+    margin-top: 3rem;
     background-color: darkgray;
     padding: 1rem;
     border-radius: 1rem;
@@ -169,7 +173,7 @@
     }
     
     /*Decks*/
-    #decks>div {
+    .deck {
         min-width: 6rem;
     }
     
@@ -210,5 +214,10 @@
     
     .card-name {
         font-size: 1rem;
+    }
+    
+    .deck {
+        margin: 0 0 0.5rem 0;
+        padding: 0;
     }
 }
