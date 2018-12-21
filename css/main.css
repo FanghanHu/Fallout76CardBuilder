@@ -1,12 +1,24 @@
+* {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 .stats-card{
     display: block;
+    position: relative;
     border-radius: 1rem;
     background-color: green;
     height: 11rem;
-    width: 8rem;
+    min-width: 8rem;
 }
 
 #specials>div>h1{
+    margin: 0;
+    z-index: 1;
     color: aliceblue;
     font-size: 10rem;
     position: relative;
@@ -17,6 +29,96 @@
 }
 
 #specials>div>h2{
+    
+    margin: 0;
+    z-index: 2;
+    font-size: rem;
     position: absolute;
+    top: 0rem;
+    font-weight: 700;
+    width: 100%;
+    text-align: center;
+    color: aliceblue;
+}
+
+#specials>div>p {
+    position: relative;
+    bottom: 1rem;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+/*Decks*/
+#deck>div {
+    background-color: aqua;
+    min-width: 8rem;
+    min-height: 2rem;
+    position: relative;
+    top: 3rem;
+}
+
+.deck {
+    position: relative;
     top: 2rem;
+    flex-basis: 0;
+    flex-grow: 1;
+    padding: 0.5rem;
+}
+
+/*Cards*/
+
+.star {
+    color: #595a5a;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.cost {
+    border: 1px solid black;
+    width: 1.8rem;
+    border-radius: 0.5rem;
+    background-color: gray;
+    color: white;
+    text-align: center;
+    display: inline''
+}
+
+.card-name {
+    display: inline;
+}
+
+card {
+    display: inline;
+}
+
+/*fit for smaller screens*/
+@media only screen and (max-width: 850px) {
+    .stats-card{
+        min-width: 6rem;
+    }
+    
+    /*Decks*/
+    #deck>div {
+        min-width: 6rem;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .stats-card{
+        height: 3rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    #specials>div>h1 {
+        display: none;
+    }
+    
+    #specials>div>p {
+        position: relative;
+        top: 0.1rem;
+        left: 5rem;
+        color: aliceblue;
+    }
 }
