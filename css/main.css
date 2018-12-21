@@ -7,11 +7,40 @@
     user-select: none;
 }
 
+/*Colors*/
+.bg-s {
+    background-color: #618869;
+}
+
+.bg-p {
+    background-color: #595034;
+}
+
+.bg-e {
+    background-color: #5CA7AF;
+}
+
+.bg-c {
+    background-color: #CA7336;
+}
+
+.bg-i {
+    background-color: #929175;
+}
+
+.bg-a {
+    background-color: #C18768;
+}
+
+.bg-l {
+    background-color: #9390A4;
+}
+
+/*stats*/
 .stats-card{
     display: block;
     position: relative;
     border-radius: 1rem;
-    background-color: green;
     height: 11rem;
     min-width: 8rem;
 }
@@ -51,13 +80,6 @@
 }
 
 /*Decks*/
-#deck>div {
-    background-color: aqua;
-    min-width: 8rem;
-    min-height: 2rem;
-    position: relative;
-    top: 3rem;
-}
 
 .deck {
     position: relative;
@@ -68,6 +90,18 @@
 }
 
 /*Cards*/
+
+.perk-card {
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px gray;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    border-radius:0.5rem 0.5rem 0 0;
+    padding: 1px;
+}
+
 .cost {
     display: inline-block;
     border-radius: 0.5rem;
@@ -77,23 +111,13 @@
     height: 2rem;
     line-height: 2rem;
     margin-left: 0.2rem;
-}
-
-.card-title {
-    font-size: 1.5rem;
-    background-color: orange;
-    border-radius:0.5rem 0.5rem 0 0;
-    padding: 1px;
+    font-weight: 700;
 }
 
 .card-name {
     font-size: 1rem;
     font-weight: 700;
-}
-
-.perk-card {
-    border-radius: 0.5rem;
-    box-shadow: 0 0 10px gray;
+    color: aliceblue;
 }
 
 .card-desc {
@@ -105,7 +129,6 @@
     text-align: center;
     color: #595a5a;
     font-size: 1.5rem;
-    background-color: orange;
     border-radius: 0 0 0.5rem 0.5rem;
     padding: 1px;
 }
