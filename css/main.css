@@ -133,15 +133,36 @@
     padding: 1px;
 }
 
+.star {
+    box-shadow: 
+}
+
 /*fit for smaller screens*/
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 1007px) {
     .stats-card{
         min-width: 6rem;
     }
     
     /*Decks*/
-    #deck>div {
+    #decks>div {
         min-width: 6rem;
+    }
+    
+    .card-name {
+        font-size: 0.7rem;
+    }
+    
+    .cost {
+        font-size: 1rem;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 0.2rem;
+        line-height: 1rem;
+    }
+    
+    .card-title {
+        height: 1.5rem;
+        line-height: 1rem;
     }
 }
 
@@ -160,5 +181,9 @@
         top: 0.1rem;
         left: 5rem;
         color: aliceblue;
+    }
+    
+    .card-name {
+        font-size: 1rem;
     }
 }
