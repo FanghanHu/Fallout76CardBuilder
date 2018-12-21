@@ -68,29 +68,46 @@
 }
 
 /*Cards*/
-
-.star {
-    color: #595a5a;
-    font-size: 2rem;
+.cost {
+    display: inline-block;
+    border-radius: 0.5rem;
+    background-color: white;
     text-align: center;
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    margin-left: 0.2rem;
 }
 
-.cost {
-    border: 1px solid black;
-    width: 1.8rem;
-    border-radius: 0.5rem;
-    background-color: gray;
-    color: white;
-    text-align: center;
-    display: inline''
+.card-title {
+    font-size: 1.5rem;
+    background-color: orange;
+    border-radius:0.5rem 0.5rem 0 0;
+    padding: 1px;
 }
 
 .card-name {
-    display: inline;
+    font-size: 1rem;
+    font-weight: 700;
 }
 
-card {
-    display: inline;
+.perk-card {
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px gray;
+}
+
+.card-desc {
+    margin: 1rem 0.2rem;
+    font-size: 0.8rem;
+}
+
+.star-field {
+    text-align: center;
+    color: #595a5a;
+    font-size: 1.5rem;
+    background-color: orange;
+    border-radius: 0 0 0.5rem 0.5rem;
+    padding: 1px;
 }
 
 /*fit for smaller screens*/
