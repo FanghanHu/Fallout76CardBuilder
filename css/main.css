@@ -87,19 +87,25 @@
     flex-basis: 0;
     flex-grow: 1;
     padding: 0.5rem;
+    padding-top: 8rem;
+    margin-bottom: 2rem;
 }
 
 /*Cards*/
 
 .perk-card {
+    position: relative;
     border-radius: 0.5rem;
     box-shadow: 0 0 10px gray;
+    margin-top: -7rem;
 }
 
 .card-title {
     font-size: 1.5rem;
     border-radius:0.5rem 0.5rem 0 0;
     padding: 1px;
+    z-index: 0;
+    margin: 0;
 }
 
 .cost {
@@ -112,6 +118,7 @@
     line-height: 2rem;
     margin-left: 0.2rem;
     font-weight: 700;
+    z-index: 0;
 }
 
 .card-name {
@@ -121,20 +128,25 @@
 }
 
 .card-desc {
-    margin: 1rem 0.2rem;
+    background-color: white;
+    padding: 1rem 0.2rem;
     font-size: 0.8rem;
+    height: 5rem;
 }
 
 .star-field {
     text-align: center;
-    color: #595a5a;
+    color: white;
+    background-color: white;
     font-size: 1.5rem;
     border-radius: 0 0 0.5rem 0.5rem;
     padding: 1px;
+    height: 2.5rem;
 }
 
 .star {
-    box-shadow: 
+    color: #bebebe;
+    text-shadow: 0 0 5px gray;
 }
 
 /*fit for smaller screens*/
