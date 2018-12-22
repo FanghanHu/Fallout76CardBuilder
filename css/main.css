@@ -104,9 +104,9 @@
     margin-top: -8.5rem;
 }
 
-.perk-card:hover + .perk-card {
+.show + .perk-card {
     margin-top: 0;
-    
+    transition: margin-top 0.5s ease-out;
 }
 
 .card-title {
