@@ -104,6 +104,11 @@
     margin-top: -8.5rem;
 }
 
+.perk-card:hover + .perk-card {
+    margin-top: 0;
+    
+}
+
 .card-title {
     font-size: 1.5rem;
     border-radius:0.5rem 0.5rem 0 0;
@@ -149,6 +154,15 @@
 .star {
     color: #bebebe;
     text-shadow: 0 0 5px gray;
+}
+
+.star-active {
+    color: #ffff25;
+    text-shadow:
+   -1px -1px 1px #b9bf28,  
+    1px -1px 1px #b9bf28,
+    -1px 1px 1px #b9bf28,
+     1px 1px 1px #b9bf28;
 }
 
 /*Card selections*/
