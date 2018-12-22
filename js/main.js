@@ -118,8 +118,8 @@ function initCards() {
     new PerkCard(1, "专家级角斗士", ["现在你的单手武器造成伤害+10%", "现在你的单手武器造成伤害+15%", "现在你的单手武器造成伤害+20%"], 1, SpecialEnum.STRENGTH).init();
     new PerkCard(1, "大师级角斗士", ["现在你的单手武器造成伤害+10%", "现在你的单手武器造成伤害+15%", "现在你的单手武器造成伤害+20%"], 1, SpecialEnum.STRENGTH).init();
     new PerkCard(1, "重枪手", ["现在你的非爆炸性重型枪械造成的伤害+10%", "现在你的非爆炸性重型枪械造成的伤害+15%", "现在你的非爆炸性重型枪械造成的伤害+20%"], 1, SpecialEnum.STRENGTH).init();
-    new PerkCard(1, "专家级重型枪械射手", ["现在你的非爆炸性重型枪械造成的伤害+10%", "现在你的非爆炸性重型枪械造成的伤害+15%", "现在你的非爆炸性重型枪械造成的伤害+20%"], 1, SpecialEnum.STRENGTH).init();
-    new PerkCard(1, "大师级重型枪械射手", ["现在你的非爆炸性重型枪械造成的伤害+10%", "现在你的非爆炸性重型枪械造成的伤害+15%", "现在你的非爆炸性重型枪械造成的伤害+20%"], 1, SpecialEnum.STRENGTH).init();
+    new PerkCard(1, "专家级重枪手", ["现在你的非爆炸性重型枪械造成的伤害+10%", "现在你的非爆炸性重型枪械造成的伤害+15%", "现在你的非爆炸性重型枪械造成的伤害+20%"], 1, SpecialEnum.STRENGTH).init();
+    new PerkCard(1, "大师级重枪手", ["现在你的非爆炸性重型枪械造成的伤害+10%", "现在你的非爆炸性重型枪械造成的伤害+15%", "现在你的非爆炸性重型枪械造成的伤害+20%"], 1, SpecialEnum.STRENGTH).init();
     new PerkCard(1, "门牙", ["你的近战武器无视对方25%的护甲", "你的近战武器无视对方50%的护甲", "你的近战武器无视对方75%的护甲"], 1, SpecialEnum.STRENGTH).init();
     new PerkCard(1, "铁拳", ["现在你的拳击造成的伤害+10%", "现在你的拳击造成的伤害+15%", "现在你的拳击造成的伤害+20%"], 1, SpecialEnum.STRENGTH).init();
     new PerkCard(1, "子弹上膛", ["重型枪械填装速度提高10%", "重型枪械填装速度提高20%", "重型枪械填装速度提高30%"], 1, SpecialEnum.STRENGTH).init();
@@ -176,7 +176,7 @@ function initCards() {
     new PerkCard(1, "百毒不侵", ["你因进食而患病的几率减少30%", "你因进食而患病的几率减少60%", "你因进食而患病的几率减少90%"], 1, SpecialEnum.ENDURANCE).init();
     new PerkCard(1, "铜肠铁胃", ["来自饮食的辐射降低30%", "来自饮食的辐射降低60%", "不会因为饮食而摄取辐射"], 1, SpecialEnum.ENDURANCE).init();
     new PerkCard(2, "赐命者", ["增加15点最大生命值上限", "增加30点最大生命值上限", "增加45点最大生命值上限"], 1, SpecialEnum.ENDURANCE).init();
-    new PerkCard(1, "客制口腹之欲", ["服用药物时减少50%饥饿值惩罚", "服用药物不再获得饥饿惩罚"], 1, SpecialEnum.ENDURANCE).init();
+    new PerkCard(1, "克制口腹之欲", ["服用药物时减少50%饥饿值惩罚", "服用药物不再获得饥饿惩罚"], 1, SpecialEnum.ENDURANCE).init();
     new PerkCard(1, "环境抗性", ["你因周边环境而患病的几率减少30%", "你因周边环境而患病的几率减少60%", "你因周边环境而患病的几率减少90%"], 1, SpecialEnum.ENDURANCE).init();
     new PerkCard(1, "夜之坚韧", ["晚上6点至早上6点, 最大生命值+20", "晚上6点至早上6点, 最大生命值+40"], 1, SpecialEnum.ENDURANCE).init();
     new PerkCard(1, "光合作用", ["在早上6点到晚上6点之间获得生命值恢复", "在早上6点到晚上6点之间获得更高生命值恢复"], 1, SpecialEnum.ENDURANCE).init();
@@ -193,7 +193,7 @@ function initCards() {
     
     new PerkCard(1, "动物朋友", ["把你的枪对准任何低于你等级的动物, 会有25%的几率让它安静下来", "把你的枪对准任何低于你等级的动物, 会有50%的几率让它安静下来", "把你的枪对准任何低于你等级的动物, 会有75%的几率让它安静下来"], 1, SpecialEnum.CHARISMA).init();
     new PerkCard(1, "保镖", ["除了你自己之外, 每位队友将使你获得6点伤害及能量抗性(最对18)", "除了你自己之外, 每位队友将使你获得8点伤害及能量抗性(最对24)", "除了你自己之外, 每位队友将使你获得10点伤害及能量抗性(最对30)", "除了你自己之外, 每位队友将使你获得12点伤害及能量抗性(最对36)"], 1, SpecialEnum.CHARISMA).init();
-    new PerkCard(1, "EMT", ["你复活的玩家将在15秒内获得生命恢复", "你复活的玩家将在15秒内获得更多的生命恢复", "你复活的玩家将在15秒内获得极多的生命恢复"], 1, SpecialEnum.CHARISMA).init();
+    new PerkCard(1, "EMT", ["你复活的玩家将在15秒内获得生命恢复", "你复活的玩家将在30秒内获得更多的生命恢复", "你复活的玩家将在60秒内获得极多的生命恢复"], 1, SpecialEnum.CHARISMA).init();
     new PerkCard(1, "友谊之火", ["遭受你火焰攻击的队友会短暂地恢复生命值(不含汽油弹)", "遭受你火焰攻击的队友会短暂地恢复较多的生命值(不含汽油弹)", "遭受你火焰攻击的队友会短暂地恢复更多的生命值(不含汽油弹)"], 1, SpecialEnum.CHARISMA).init();
     new PerkCard(1, "快乐露营者", ["身处己方队伍的工坊中时, 饥饿与口渴增长速度放缓40%", "身处己方队伍的工坊中时, 饥饿与口渴增长速度放缓80%"], 1, SpecialEnum.CHARISMA).init();
     new PerkCard(1, "逍遥自在", ["受到酒精影响时, 你的运气+2", "受到酒精影响时, 你的运气+3"], 1, SpecialEnum.CHARISMA).init();
