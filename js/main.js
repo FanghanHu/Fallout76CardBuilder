@@ -18,6 +18,7 @@ class PerkCard {
         this.desc = desc; //the size of this desc array also indicates how many level this card has.
         this.level = level;
         this.special = special;
+        this.oldLevel = null;
     }
     
     /*
@@ -28,20 +29,35 @@ class PerkCard {
         element.className="perk-card";
         
         let background = "";
+        let color = "";
         switch(this.special) {
-            case SpecialEnum.STRENGTH : background = " bg-s";
+            case SpecialEnum.STRENGTH : 
+                background = " bg-s";
+                color = " color-s";
                 break;
-            case SpecialEnum.PERCEPTION : background = " bg-p";
+            case SpecialEnum.PERCEPTION : 
+                background = " bg-p";
+                color = " color-p";
                 break;
-            case SpecialEnum.ENDURANCE : background = " bg-e";
+            case SpecialEnum.ENDURANCE : 
+                background = " bg-e";
+                color = " color-e";
                 break;
-            case SpecialEnum.CHARISMA : background = " bg-c";
+            case SpecialEnum.CHARISMA : 
+                background = " bg-c";
+                color = " color-c";
                 break;
-            case SpecialEnum.INTELLIGENCE : background = " bg-i";
+            case SpecialEnum.INTELLIGENCE : 
+                background = " bg-i";
+                color = " color-i";
                 break;
-            case SpecialEnum.AGILITY : background = " bg-a";
+            case SpecialEnum.AGILITY : 
+                background = " bg-a";
+                color = " color-a";
                 break;
-            case SpecialEnum.LUCK : background = " bg-l";
+            case SpecialEnum.LUCK : 
+                background = " bg-l";
+                color = " color-l";
                 break;
             default:
                 background = "";
@@ -52,7 +68,7 @@ class PerkCard {
         
         let costElement = document.createElement("span");
         costElement.className = "cost";
-        costElement.innerHTML = this.cost;
+        costElement.innerHTML = this.cost + this.level - 1;
         titleElement.appendChild(costElement);
         
         let nameElement = document.createElement("span");
@@ -72,8 +88,45 @@ class PerkCard {
             starElement.innerHTML = "&#9733;";
             starElement.className = "star";
             if(i < this.level) {
-                starElement.className += " star-active";
+                starElement.className += color;
             }
+            
+            let ref = this;
+            let selectionElement = document.getElementById("card-selections");
+            
+            if(i != this.level - 1) {
+                //change card to other level here:
+                starElement.onmouseenter = function() {
+                    //console.log("enter: " + (i + 1));
+                    if(ref.oldLevel == null) ref.oldLevel = ref.level;
+                    let newCard = ref.changeLevel(i + 1, ref.oldLevel);
+                    let newElement = newCard.createElement();
+                    selectionElement.replaceChild(newElement, element);
+                };
+                
+                
+
+            }
+            else {
+                //change level back to original on mouse leave
+                element.onmouseout = function() {
+                    //console.log("out: " + ref.oldLevel);
+                    if(ref.oldLevel != null) {
+                        let newElement = ref.changeLevel(ref.oldLevel, null).createElement();
+                        selectionElement.replaceChild(newElement, element);
+                    }
+                    
+                }
+                
+                //change the level when on click
+                starElement.onclick = function() {
+                    //console.log("click: " + (i + 1));
+                    let newCard = ref.changeLevel(i + 1, null);
+                    let newElement = newCard.createElement();
+                    selectionElement.replaceChild(newElement, element);
+                };
+            }
+            
             starFieldElement.appendChild(starElement);
         }
         element.appendChild(starFieldElement);
@@ -91,14 +144,19 @@ class PerkCard {
     /*
         return a new card with given level
     */
-    changeLevel(newLevel) {
-        return new PerkCard(this.cost, this.name, this.desc, newLevel, this.special);
+    changeLevel(newLevel, oldLevel) {
+        let newCard = new PerkCard(this.cost, this.name, this.desc, newLevel, this.special);
+        newCard.oldLevel = oldLevel;
+        return newCard;
     }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
 
 initCards();
+window.onload = function() {
+    showCards(SpecialEnum.STRENGTH);
+};
 
 ///////////////////////////////////////////////////////////////////////////////////
 
