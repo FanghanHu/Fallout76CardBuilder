@@ -90,9 +90,9 @@ class PerkCard {
                 let deckId = SpecialEnum.properties[ref.special].deck;
                 let deckElement = document.getElementById(deckId);
                 deckElement.removeChild(element);
-                updatePoints();
                 ref.isSelected = false;
                 deselectCard(ref);
+                updatePoints();
                 showCards(ref.special);
             }
             
@@ -472,7 +472,6 @@ function showCards(special) {
 }
 
 function updatePoints() {
-    console.log("calls");
     for(let special = 1; special <= 7; special++) {
         let totalDeckPoints = 0;
         let deckElement = document.getElementById(SpecialEnum.properties[special].deck);
@@ -497,12 +496,13 @@ function updatePoints() {
     }
     let pointsElement = document.getElementById("points");
     pointsElement.innerHTML = (56 - totalSpecial);
+    updateUrl();
 }
 
 
 /////Saving state and loading state //////////////////////////////////////////////////////////
 
-const dictionary = "1234567890qQwWeErRtTyYuUiIoOpPaAsSdDfFgGhHjJkKlLzZxXcCvVbBnNmM";
+const dictionary = "qQwWeErRtTyYuUiIoOpPaAsSdDfFgGhHjJkKlLzZxXcCvVbBnNmM1234567890";
 
 /**
  * only used for keeping track of what card is selected, doesn't actually move elements around.
@@ -525,7 +525,6 @@ function deselectCard(perkCard) {
     let deck = selectedDecks[specialId];
     let index = deck.findIndex((card) => card.id === perkCard.id);
     if(index >= 0) {
-        console.log("test");
         deck.splice(index, 1);
     }
 }
@@ -544,13 +543,55 @@ function getSelectionData() {
         }
     }
     //console.log(data);
+    return data;
 }
 
+/**
+ * Parse selectionData into a long string
+ * @param selectionData
+ */
 function parseSelectionData(selectionData) {
+    if(selectionData == null) {
+        return null;
+    }
 
+    let string = "";
+    while(selectionData.length > 0) {
+        let i = selectionData.shift();
+        let c = dictionary.charAt(i);
+        string+=c;
+    }
+    return string;
 }
 
+/**
+ * parse a string into selection data.
+ */
+function parseString(string) {
+    if(string == null) {
+        return null;
+    }
+
+    let selectionData = [];
+    for (let i = 0; i < string.length; i++) {
+        // noinspection JSUnresolvedFunction
+        let c = string.charAt(i);
+        let num = dictionary.indexOf(c);
+        selectionData.push(num);
+    }
+    return selectionData;
+}
+
+/**
+ * read and process selectionData into selected perk cards.
+ * Since it is only called in when the page is loaded, a clear deck action is not needed.
+ * @param selectionData
+ */
 function readSelectionData(selectionData) {
+    if(selectionData == null) {
+        return;
+    }
+
     while(selectionData.length > 0) {
         let special = selectionData.shift();
         let id = selectionData.shift();
@@ -564,15 +605,23 @@ function readSelectionData(selectionData) {
     }
 
     updatePoints();
+    showCards(SpecialEnum.STRENGTH);
 }
 
 function handleVariable() {
-    let url = new URL(window.location.href);
-    let parameter = url.searchParams.get("p");
-    console.log(parameter);
+    let string = getParameter();
+    let selectionData = parseString(string);
+    readSelectionData(selectionData);
 }
 
-
+/**
+ * change the url to save selection data
+ */
+function updateUrl() {
+    let selectionData = getSelectionData();
+    let string = parseSelectionData(selectionData);
+    setParameter(string);
+}
 
 /**
  * get data string from url
