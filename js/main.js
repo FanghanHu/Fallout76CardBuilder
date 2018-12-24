@@ -1,3 +1,4 @@
+/*jslint es6:true*/
 var SpecialEnum = {
     STRENGTH : 1,
     PERCEPTION : 2,
@@ -484,4 +485,9 @@ function showCards(special) {
             selectionElement.appendChild(element);
         }
     }
+}
+
+function handleVariable() {
+    let url = new URL(window.location.href);
+    console.log(url.searchParams.get("p"));
 }
