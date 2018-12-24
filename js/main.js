@@ -5,19 +5,29 @@ var SpecialEnum = {
     CHARISMA : 4,
     INTELLIGENCE : 5,
     AGILITY : 6,
-    LUCK : 7
+    LUCK : 7,
+    properties : {
+        1 : {background : "bg-s", color : "color-s", deck : "s-deck", point : "s-amount"},
+        2 : {background : "bg-p", color : "color-p", deck : "p-deck", point : "p-amount"},
+        3 : {background : "bg-e", color : "color-e", deck : "e-deck", point : "e-amount"},
+        4 : {background : "bg-c", color : "color-c", deck : "c-deck", point : "c-amount"},
+        5 : {background : "bg-i", color : "color-i", deck : "i-deck", point : "i-amount"},
+        6 : {background : "bg-a", color : "color-a", deck : "a-deck", point : "a-amount"},
+        7 : {background : "bg-l", color : "color-l", deck : "l-deck", point : "l-amount"}
+    }
 }
 
 //the array for storing perk card data.
 var cards = [[],[],[],[],[],[],[]];
 
 class PerkCard {
-    constructor(cost, name, desc, level, special) {
+    constructor(cost, name, desc, level, special, isSelected) {
         this.cost = cost;
         this.name = name;
         this.desc = desc; //the size of this desc array also indicates how many level this card has.
         this.level = level;
         this.special = special;
+        this.isSelected = false;
         this.oldLevel = null;
     }
     
@@ -26,49 +36,20 @@ class PerkCard {
     */
     createElement() {
         let element = document.createElement("div");
-        element.className="perk-card";
+        let ref = this;
+        let selectionElement = document.getElementById("card-selections");
         
-        let background = "";
-        let color = "";
-        switch(this.special) {
-            case SpecialEnum.STRENGTH : 
-                background = " bg-s";
-                color = " color-s";
-                break;
-            case SpecialEnum.PERCEPTION : 
-                background = " bg-p";
-                color = " color-p";
-                break;
-            case SpecialEnum.ENDURANCE : 
-                background = " bg-e";
-                color = " color-e";
-                break;
-            case SpecialEnum.CHARISMA : 
-                background = " bg-c";
-                color = " color-c";
-                break;
-            case SpecialEnum.INTELLIGENCE : 
-                background = " bg-i";
-                color = " color-i";
-                break;
-            case SpecialEnum.AGILITY : 
-                background = " bg-a";
-                color = " color-a";
-                break;
-            case SpecialEnum.LUCK : 
-                background = " bg-l";
-                color = " color-l";
-                break;
-            default:
-                background = "";
-        }
+        
+        element.className="perk-card";
+        let background = SpecialEnum.properties[this.special].background;
+        let color = SpecialEnum.properties[this.special].color;
+        
         let titleElement = document.createElement("div");
-        titleElement.className = "card-title" + background;
+        titleElement.className = "card-title " + background;
         element.appendChild(titleElement);
         
         let costElement = document.createElement("span");
         costElement.className = "cost";
-        costElement.innerHTML = this.cost + this.level - 1;
         titleElement.appendChild(costElement);
         
         let nameElement = document.createElement("span");
@@ -78,58 +59,139 @@ class PerkCard {
         
         let descElement = document.createElement("div");
         descElement.className = "card-desc";
-        descElement.innerHTML = this.desc[this.level-1];
         element.appendChild(descElement);
         
         let starFieldElement = document.createElement("div");
         starFieldElement.className = "star-field";
-        for(let i=0; i<this.desc.length; i++) {
-            let starElement = document.createElement("span");
-            starElement.innerHTML = "&#9733;";
-            starElement.className = "star";
-            if(i < this.level) {
-                starElement.className += color;
-            }
-            
-            let ref = this;
-            let selectionElement = document.getElementById("card-selections");
-            
-            if(i != this.level - 1) {
-                //change card to other level here:
-                starElement.onmouseenter = function() {
-                    //console.log("enter: " + (i + 1));
-                    if(ref.oldLevel == null) ref.oldLevel = ref.level;
-                    let newCard = ref.changeLevel(i + 1, ref.oldLevel);
-                    let newElement = newCard.createElement();
-                    selectionElement.replaceChild(newElement, element);
-                };
-                
-                
-
-            }
-            else {
-                //change level back to original on mouse leave
-                element.onmouseout = function() {
-                    //console.log("out: " + ref.oldLevel);
-                    if(ref.oldLevel != null) {
-                        let newElement = ref.changeLevel(ref.oldLevel, null).createElement();
-                        selectionElement.replaceChild(newElement, element);
-                    }
-                    
-                }
-                
-                //change the level when on click
-                starElement.onclick = function() {
-                    //console.log("click: " + (i + 1));
-                    let newCard = ref.changeLevel(i + 1, null);
-                    let newElement = newCard.createElement();
-                    selectionElement.replaceChild(newElement, element);
-                };
-            }
-            
-            starFieldElement.appendChild(starElement);
-        }
         element.appendChild(starFieldElement);
+        
+        updateInfo();
+        
+        element.onclick = function() {
+            if(!ref.selected && hasEnoughPoints(ref.cost + ref.level - 1)) {
+                
+                //select a card when clicking on it.
+                ref.selected = true;
+                selectionElement.removeChild(element);
+                let deckId = SpecialEnum.properties[ref.special].deck;
+                let deckElement = document.getElementById(deckId);
+                deckElement.appendChild(element);
+                ref.isSelected = true;
+                updatePoints();
+            }
+            
+        }
+        
+        function updatePoints() {
+            let totalDeckPoints = 0;
+            let deckElement = document.getElementById(SpecialEnum.properties[ref.special].deck);
+            let costs = deckElement.getElementsByClassName("cost");
+            for(let i = 0; i < costs.length; i++) {
+                let costElement = costs[i];
+                totalDeckPoints += parseInt(costElement.innerHTML);
+            }
+            if(totalDeckPoints == 0) {
+                totalDeckPoints = 1;
+            }
+            let pointElement = document.getElementById(SpecialEnum.properties[ref.special].point);
+            pointElement.innerHTML = totalDeckPoints;
+            
+            let totalSpecial = 0
+            let decksElement = document.getElementById("specials");
+            let totalCosts = decksElement.getElementsByClassName("speical-amount");
+            for(let i = 0; i < totalCosts.length; i++) {
+                let costElement = totalCosts[i];
+                totalSpecial += parseInt(costElement.innerHTML);
+            }
+            let pointsElement = document.getElementById("points");
+            pointsElement.innerHTML = (56 - totalSpecial);
+        }
+        
+        /*
+            return true if there is still enough points 
+        */
+        function hasEnoughPoints(cost) {
+            let totalDeckPoints = 0;
+            let totalSpecial = 0
+            let deckElement = document.getElementById(SpecialEnum.properties[ref.special].deck);
+            let costs = deckElement.getElementsByClassName("cost");
+            for(let i = 0; i < costs.length; i++) {
+                let costElement = costs[i];
+                totalDeckPoints += parseInt(costElement.innerHTML);
+            }
+            
+            if(totalDeckPoints + cost > 15) {
+                alert("该属性已经加满.");
+                return false;
+            }
+            
+            let decksElement = document.getElementById("specials");
+            let totalCosts = decksElement.getElementsByClassName("speical-amount");
+            for(let i = 0; i < totalCosts.length; i++) {
+                let costElement = totalCosts[i];
+                totalSpecial += parseInt(costElement.innerHTML);
+            }
+            
+            if(totalSpecial + cost > 56) {
+                alert("剩余点数不足.");
+                return false;
+            }
+            
+            return true;
+        }
+        
+        /*
+            update card cost, desc, star highlight, and star hovering functions.
+        */
+        function updateInfo() {
+            costElement.innerHTML = ref.cost + ref.level - 1;
+            descElement.innerHTML = ref.desc[ref.level-1];
+            while(starFieldElement.firstChild) {
+                starFieldElement.removeChild(starFieldElement.firstChild);
+            }
+            
+            for(let i=0; i<ref.desc.length; i++) {
+                let starElement = document.createElement("span");
+                starElement.innerHTML = "&#9733;";
+                starElement.className = "star ";
+                if(i < ref.level) {
+                    starElement.className += color;
+                }
+
+                if(i != ref.level - 1) {
+                    //change card to other level here:
+                    starElement.onmouseenter = function() {
+                        //console.log("enter: " + (i + 1));
+                        if(ref.oldLevel == null) ref.oldLevel = ref.level;
+                        ref.level = i + 1;
+                        updateInfo();
+                    };
+
+                }
+                else {
+                    //change level back to original on mouse leave
+                    element.onmouseout = function() {
+                        //console.log("out: " + ref.oldLevel);
+                        if(ref.oldLevel != null) {
+                            ref.level = ref.oldLevel;
+                            updateInfo();
+                        }
+
+                    }
+
+                    //change the level when on click
+                    starElement.onclick = function() {
+                        //console.log("click: " + (i + 1));
+                        ref.level = i + 1;
+                        ref.oldLevel = null;
+                        updateInfo();
+                        event.stopPropagation();
+                    };
+                }
+
+                starFieldElement.appendChild(starElement);
+            }
+        }
         
         return element;
     }
@@ -145,7 +207,7 @@ class PerkCard {
         return a new card with given level
     */
     changeLevel(newLevel, oldLevel) {
-        let newCard = new PerkCard(this.cost, this.name, this.desc, newLevel, this.special);
+        let newCard = new PerkCard(this.cost, this.name, this.desc, newLevel, this.special, this.selected);
         newCard.oldLevel = oldLevel;
         return newCard;
     }
@@ -367,7 +429,12 @@ function showCards(special) {
     let specialCards = cards[special-1];
     
     for(let i = 0; i < specialCards.length; i++) {
-        selectionElement.appendChild(specialCards[i].createElement());
+        //create a card element
+        let perkCard = specialCards[i];
+        if(!perkCard.isSelected) {
+            let element = perkCard.createElement();
+            selectionElement.appendChild(element);
+        }
     }
 }
 

@@ -150,9 +150,16 @@
 }
 
 #card-selections>.perk-card {
+    transition: box-shadow 0.5s;
     width: 9.2rem;
+    height: 13rem;
     margin: 1rem 0.2rem;
     display: inline-block;
+}
+
+#card-selections>.perk-card:hover {
+    box-shadow: 0 0 30px white;
+    transition: box-shadow 0.5s;
 }
 
 #card-selections .card-name {

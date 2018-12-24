@@ -25,113 +25,55 @@
             
             
             
-            <div class="d-inline justify-content-around d-md-flex" id="specials" >
+            <div class="d-inline justify-content-around d-md-flex" id="specials">
                 
-                <div class="stats-card bg-s" id="strength">
+                <div class="stats-card bg-s" id="strength" onclick="showCards(SpecialEnum.STRENGTH)">
                     <h2>力量</h2>
                     <h1>S</h1>
-                    <p><span id="s-amount">1</span>点</p>
+                    <p><span class="speical-amount" id="s-amount">1</span>点</p>
                 </div>
-                <div class="stats-card bg-p" id="perception" >
+                <div class="stats-card bg-p" id="perception" onclick="showCards(SpecialEnum.PERCEPTION)">
                     <h1>P</h1>
                     <h2>感知</h2>
-                    <p><span id="p-amount">1</span>点</p>
+                    <p><span class="speical-amount" id="p-amount">1</span>点</p>
                 </div>
-                <div class="stats-card bg-e" id="endurance" >
+                <div class="stats-card bg-e" id="endurance" onclick="showCards(SpecialEnum.ENDURANCE)">
                     <h1>E</h1>
                     <h2>耐力</h2>
-                    <p><span id="e-amount">1</span>点</p>
+                    <p><span class="speical-amount" id="e-amount">1</span>点</p>
                 </div>
-                <div class="stats-card bg-c" id="charisma" >
+                <div class="stats-card bg-c" id="charisma" onclick="showCards(SpecialEnum.CHARISMA)">
                     <h1>C</h1>
                     <h2>魅力</h2>
-                    <p><span id="c-amount">1</span>点</p>
+                    <p><span class="speical-amount" id="c-amount">1</span>点</p>
                 </div>
-                <div class="stats-card bg-i" id="intelligence" >
+                <div class="stats-card bg-i" id="intelligence" onclick="showCards(SpecialEnum.INTELLIGENCE)">
                     <h1>I</h1>
                     <h2>智力</h2>
-                    <p><span id="i-amount">1</span>点</p>
+                    <p><span class="speical-amount" id="i-amount">1</span>点</p>
                 </div>
-                <div class="stats-card bg-a" id="agility" >
+                <div class="stats-card bg-a" id="agility" onclick="showCards(SpecialEnum.AGILITY)">
                     <h1>A</h1>
                     <h2>敏捷</h2>
-                    <p><span id="a-amount">1</span>点</p>
+                    <p><span class="speical-amount" id="a-amount">1</span>点</p>
                 </div>
-                <div class="stats-card bg-l" id="luck" >
+                <div class="stats-card bg-l" id="luck" onclick="showCards(SpecialEnum.LUCK)">
                     <h1>L</h1>
                     <h2>幸运</h2>
-                    <p><span id="l-amount">1</span>点</p>
+                    <p><span class="speical-amount" id="l-amount">1</span>点</p>
                 </div>
             </div>
             
             <div id="points-display" style="margin-right: 2rem;">
-                <span style="font-weight: 700; color: darkgray;">Points Left: <span id="points">49</span></span>
+                <span style="font-weight: 700; color: darkgray;">剩余点数: <span id="points">49</span></span>
             </div>
             
             <div class="d-md-flex justify-content-around" id="decks">
-                <div class="deck" id="s-deck">
-                    
-                    <div class="perk-card">
-                        <div class="card-title bg-s">
-                            <span class="cost">1</span>
-                            <span class="card-name">专家级散弹抢手</span>
-                        </div>
-                        <div class="card-desc">
-                            死之前从你背包里面丢个手雷出来
-                        </div>
-                        <div class="star-field">
-                            <span class="star">&#9733;</span>
-                            <span class="star">&#9733;</span>
-                            <span class="star">&#9733;</span>
-                        </div>
-                    </div>
-                    
-                    <div class="perk-card">
-                        <div class="card-title bg-s">
-                            <span class="cost">1</span>
-                            <span class="card-name">笑到最后</span>
-                        </div>
-                        <div class="card-desc">
-                            死之前从你背包里面丢个手雷出来
-                        </div>
-                        <div class="star-field">
-                            <span class="star">&#9733;</span>
-                            <span class="star">&#9733;</span>
-                            <span class="star">&#9733;</span>
-                        </div>
-                    </div>
-                    
-                    <div class="perk-card">
-                        <div class="card-title bg-s">
-                            <span class="cost">1</span>
-                            <span class="card-name">笑到最后</span>
-                        </div>
-                        <div class="card-desc">
-                            死之前从你背包里面丢个手雷出来
-                        </div>
-                        <div class="star-field">
-                            <span class="star">&#9733;</span>
-                            <span class="star">&#9733;</span>
-                            <span class="star">&#9733;</span>
-                        </div>
-                    </div>
+                <div class="deck" id="s-deck">   
                     
                 </div>
                 <div class="deck" id="p-deck">
-                    <div class="perk-card">
-                        <div class="card-title bg-s">
-                            <span class="cost">1</span>
-                            <span class="card-name">笑到最后</span>
-                        </div>
-                        <div class="card-desc">
-                            死之前从你背包里面丢个手雷出来
-                        </div>
-                        <div class="star-field">
-                            <span class="star color-i">&#9733;</span>
-                            <span class="star">&#9733;</span>
-                            <span class="star">&#9733;</span>
-                        </div>
-                    </div>
+                    
                 </div>
                 <div class="deck" id="e-deck">
                     
@@ -151,23 +93,6 @@
             </div>
             
             <div id="card-selections">
-                <div style="text-align: center; font-size: 2rem; color: #a76060">选卡吧少年</div>
-                
-                <div class="perk-card">
-                    <div class="card-title bg-s">
-                        <span class="cost">1</span>
-                        <span class="card-name">笑到最后</span>
-                    </div>
-                    <div class="card-desc">
-                        死之前从你背包里面丢个手雷出来
-                    </div>
-                    <div class="star-field">
-                        <span class="star">&#9733;</span>
-                        <span class="star">&#9733;</span>
-                        <span class="star">&#9733;</span>
-                    </div>
-                </div>
-
 
             </div>
             
