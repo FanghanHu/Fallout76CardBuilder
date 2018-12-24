@@ -182,9 +182,22 @@ class PerkCard {
                     //change the level when on click
                     starElement.onclick = function() {
                         //console.log("click: " + (i + 1));
-                        ref.level = i + 1;
-                        ref.oldLevel = null;
-                        updateInfo();
+                        
+                        if(ref.isSelected) {
+                            
+                            if(hasEnoughPoints((i + 1) - ref.oldLevel)) {
+                                ref.level = i + 1;
+                                ref.oldLevel = null;
+                                updateInfo();
+                                updatePoints();
+                            }
+                        }
+                        else {
+                            ref.level = i + 1;
+                            ref.oldLevel = null;
+                            updateInfo();
+                        }
+                        
                         event.stopPropagation();
                     };
                 }
