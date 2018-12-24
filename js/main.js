@@ -21,7 +21,7 @@ var SpecialEnum = {
 var cards = [[],[],[],[],[],[],[]];
 
 class PerkCard {
-    constructor(cost, name, desc, level, special, isSelected) {
+    constructor(cost, name, desc, level, special) {
         this.cost = cost;
         this.name = name;
         this.desc = desc; //the size of this desc array also indicates how many level this card has.
@@ -68,16 +68,25 @@ class PerkCard {
         updateInfo();
         
         element.onclick = function() {
-            if(!ref.selected && hasEnoughPoints(ref.cost + ref.level - 1)) {
+            if(!ref.isSelected && hasEnoughPoints(ref.cost + ref.level - 1)) {
                 
                 //select a card when clicking on it.
-                ref.selected = true;
                 selectionElement.removeChild(element);
                 let deckId = SpecialEnum.properties[ref.special].deck;
                 let deckElement = document.getElementById(deckId);
                 deckElement.appendChild(element);
                 ref.isSelected = true;
                 updatePoints();
+                return;
+            }
+            
+            if(ref.isSelected) {
+                let deckId = SpecialEnum.properties[ref.special].deck;
+                let deckElement = document.getElementById(deckId);
+                deckElement.removeChild(element);
+                updatePoints();
+                ref.isSelected = false;
+                showCards(ref.special);
             }
             
         }
@@ -214,15 +223,6 @@ class PerkCard {
     */
     init() {
         cards[this.special-1].push(this);
-    }
-    
-    /*
-        return a new card with given level
-    */
-    changeLevel(newLevel, oldLevel) {
-        let newCard = new PerkCard(this.cost, this.name, this.desc, newLevel, this.special, this.selected);
-        newCard.oldLevel = oldLevel;
-        return newCard;
     }
 }
 
@@ -449,13 +449,4 @@ function showCards(special) {
             selectionElement.appendChild(element);
         }
     }
-}
-
-function test () {
-    let perk = cards[0][0];
-    let element = perk.createElement();
-    
-    document.body.appendChild(element);
-    
-    console.log(cards);
 }
