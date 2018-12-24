@@ -130,7 +130,7 @@ class PerkCard {
             }
             
             if((ref.isSelected && totalDeckPoints > 15) || (!ref.isSelected && totalDeckPoints + cost > 15)) {
-                alert("该属性已经加满.");
+                alert("单一属性最高只能加到15点.");
                 return false;
             }
             
@@ -139,6 +139,10 @@ class PerkCard {
             for(let i = 0; i < totalCosts.length; i++) {
                 let costElement = totalCosts[i];
                 totalSpecial += parseInt(costElement.innerHTML);
+            }
+            
+            if(costs.length==0) {
+                cost--;
             }
             
             if(totalSpecial + cost > 56) {
@@ -239,7 +243,7 @@ window.onload = function() {
     initialize all the perk cards
 */
 function initCards() { 
-    new PerkCard(1, "蛮人古古那", ["未装备动力装甲时, 没点力量+2点能量抗性 (最高40点)", "未装备动力装甲时, 没点力量+3点能量抗性 (最高60点)", "未装备动力装甲时, 没点力量+4点能量抗性 (最高80点)"], 1, SpecialEnum.STRENGTH).init();
+    new PerkCard(1, "蛮人古古那", ["未装备动力装甲时, 每点力量+2点伤害以及能量抗性 (最高40点)", "未装备动力装甲时, 每点力量+3点伤害以及能量抗性 (最高60点)", "未装备动力装甲时, 每点力量+4点伤害以及能量抗性 (最高80点)"], 1, SpecialEnum.STRENGTH).init();
     new PerkCard(1, "破坏者", ["枪托打击造成的伤害+25%, 并有5%的几率致残你的对手", "枪托打击造成的伤害+50%, 并有10%的几率致残你的对手"], 1, SpecialEnum.STRENGTH).init();
     new PerkCard(1, "熊臂持枪", ["重型枪械的重量减轻30%", "重型枪械的重量减轻60%", "重型枪械的重量减轻90%"], 1, SpecialEnum.STRENGTH).init();
     new PerkCard(1, "重击者", ["现在你的双手近战武器造成的伤害+10%", "现在你的双手近战武器造成的伤害+15%", "现在你的双手近战武器造成的伤害+20%"], 1, SpecialEnum.STRENGTH).init();
@@ -362,7 +366,7 @@ function initCards() {
     new PerkCard(1, "旅行中介", ["进行快速移动时少付30%的瓶盖"], 1, SpecialEnum.CHARISMA).init();
     new PerkCard(1, "卫生防疫", ["你的疾病被治愈时, 有50%的几率可以为附近的队友治疗一种疾病", "你的疾病被治愈时, 必然可以为附近的队友治疗一种疾病"], 1, SpecialEnum.CHARISMA).init();
     new PerkCard(1, "多多益善", ["如果队友也有变异, 正面变异效果+25%"], 1, SpecialEnum.CHARISMA).init();
-    new PerkCard(2, "治疗之手", ["你复活的玩家将消除所有辐射值"], 1, SpecialEnum.CHARISMA).init();
+    new PerkCard(1, "治疗之手", ["你复活的玩家将消除所有辐射值"], 1, SpecialEnum.CHARISMA).init();
     
     
     new PerkCard(1, "装甲商", ["现在你可以制作高级护甲更改件(需要设计图)", "现在制作装甲的材料消耗减少", "你制作的护甲耐久性更高"], 1, SpecialEnum.INTELLIGENCE).init();

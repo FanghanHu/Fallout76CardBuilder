@@ -9,17 +9,23 @@
 
 /*stats*/
 .stats-card{
+    color: aliceblue;
     display: block;
     position: relative;
     border-radius: 1rem;
     height: 11rem;
-    min-width: 8rem;
+    width: 8rem;
+    transition: color 2s;
+}
+
+.stats-card:hover {
+    color: #28ba28;
+    transition: color 2s;
 }
 
 #specials>div>h1{
     margin: 0;
     z-index: 1;
-    color: aliceblue;
     font-size: 10rem;
     position: relative;
     top: 50%;
@@ -38,7 +44,6 @@
     font-weight: 700;
     width: 100%;
     text-align: center;
-    color: aliceblue;
 }
 
 #specials>div>p {
@@ -48,6 +53,7 @@
     margin: 0;
     text-align: center;
     font-size: 1.5rem;
+    color: black;
 }
 
 #points-display {
