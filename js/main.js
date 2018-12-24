@@ -97,31 +97,6 @@ class PerkCard {
             }
             
         };
-        
-        function updatePoints() {
-            let totalDeckPoints = 0;
-            let deckElement = document.getElementById(SpecialEnum.properties[ref.special].deck);
-            let costs = deckElement.getElementsByClassName("cost");
-            for(let i = 0; i < costs.length; i++) {
-                let costElement = costs[i];
-                totalDeckPoints += parseInt(costElement.innerHTML);
-            }
-            if(totalDeckPoints === 0) {
-                totalDeckPoints = 1;
-            }
-            let pointElement = document.getElementById(SpecialEnum.properties[ref.special].point);
-            pointElement.innerHTML = totalDeckPoints+"";
-            
-            let totalSpecial = 0;
-            let decksElement = document.getElementById("specials");
-            let totalCosts = decksElement.getElementsByClassName("special-amount");
-            for(let i = 0; i < totalCosts.length; i++) {
-                let costElement = totalCosts[i];
-                totalSpecial += parseInt(costElement.innerHTML);
-            }
-            let pointsElement = document.getElementById("points");
-            pointsElement.innerHTML = (56 - totalSpecial);
-        }
 
         
         /*
@@ -227,7 +202,6 @@ class PerkCard {
                 starFieldElement.appendChild(starElement);
             }
         }
-        
         return element;
     }
     
@@ -497,7 +471,33 @@ function showCards(special) {
     }
 }
 
+function updatePoints() {
+    console.log("calls");
+    for(let special = 1; special <= 7; special++) {
+        let totalDeckPoints = 0;
+        let deckElement = document.getElementById(SpecialEnum.properties[special].deck);
+        let costs = deckElement.getElementsByClassName("cost");
+        for(let i = 0; i < costs.length; i++) {
+            let costElement = costs[i];
+            totalDeckPoints += parseInt(costElement.innerHTML);
+        }
+        if(totalDeckPoints === 0) {
+            totalDeckPoints = 1;
+        }
+        let pointElement = document.getElementById(SpecialEnum.properties[special].point);
+        pointElement.innerHTML = totalDeckPoints+"";
+    }
 
+    let totalSpecial = 0;
+    let decksElement = document.getElementById("specials");
+    let totalCosts = decksElement.getElementsByClassName("special-amount");
+    for(let i = 0; i < totalCosts.length; i++) {
+        let costElement = totalCosts[i];
+        totalSpecial += parseInt(costElement.innerHTML);
+    }
+    let pointsElement = document.getElementById("points");
+    pointsElement.innerHTML = (56 - totalSpecial);
+}
 
 
 /////Saving state and loading state //////////////////////////////////////////////////////////
@@ -543,8 +543,27 @@ function getSelectionData() {
             data.push(perkCard.level);
         }
     }
+    //console.log(data);
+}
 
-    console.log(data);
+function parseSelectionData(selectionData) {
+
+}
+
+function readSelectionData(selectionData) {
+    while(selectionData.length > 0) {
+        let special = selectionData.shift();
+        let id = selectionData.shift();
+        let level = selectionData.shift();
+        let perkCard = cards[special][id];
+        perkCard.level = level;
+        perkCard.isSelected = true;
+        let deckId = SpecialEnum.properties[perkCard.special].deck;
+        let deckElement = document.getElementById(deckId);
+        deckElement.appendChild(perkCard.createElement());
+    }
+
+    updatePoints();
 }
 
 function handleVariable() {
