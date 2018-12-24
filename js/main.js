@@ -15,10 +15,10 @@ var SpecialEnum = {
         6 : {background : "bg-a", color : "color-a", deck : "a-deck", point : "a-amount"},
         7 : {background : "bg-l", color : "color-l", deck : "l-deck", point : "l-amount"}
     }
-}
+};
 
 //the array for storing perk card data.
-var cards = [[],[],[],[],[],[],[]];
+var cards = [[], [], [], [], [], [], []];
 
 class PerkCard {
     constructor(cost, name, desc, level, special) {
@@ -268,6 +268,7 @@ function initCards() {
     new PerkCard(1, "体格健壮", ["装甲比正常重量轻25%", "装甲比正常重量轻50%"], 1, SpecialEnum.STRENGTH).init();
     new PerkCard(1, "完全充能", ["穿着动力装甲冲刺的时候, 只消耗原来一半的聚变核心能量", "穿着动力装甲冲刺的时候, 不再消耗额外的聚变核心能量"], 1, SpecialEnum.STRENGTH).init();
     new PerkCard(1, "旅行药房", ["所有药物(包括治疗针)的重量减少了30%", "所有药物(包括治疗针)的重量减少了60%", "所有药物(包括治疗针)的重量减少了90%"], 1, SpecialEnum.STRENGTH).init();
+    new PerkCard(1, "子弹带", ["弹道武器的弹药重量减少了45%", "弹道武器的弹药重量减少了90%"], 1, SpecialEnum.STRENGTH).init();
 
     
     new PerkCard(2, "洞察力", ["你可以在VATS中查看各项目标的具体情况"], 1, SpecialEnum.PERCEPTION).init();
@@ -293,6 +294,12 @@ function initCards() {
     new PerkCard(1, "坦克杀手", ["使用步枪攻击时将无视目标12%的护甲, 并有3%几率能使地方陷入失衡状态", "使用步枪攻击时将无视目标24%的护甲, 并有6%几率能使地方陷入失衡状态", "使用步枪攻击时将无视目标36%的护甲, 并有9%几率能使地方陷入失衡状态"], 1, SpecialEnum.PERCEPTION).init();
     new PerkCard(1, "杂志收藏家", ["范围内有杂志时, 会听见提示音"], 1, SpecialEnum.PERCEPTION).init();
     new PerkCard(1, "感知娃娃", ["范围内有娃娃时, 会听见提示音"], 1, SpecialEnum.PERCEPTION).init();
+    new PerkCard(1, "寻宝高手", ["范围内有瓶盖盒时, 会听见提示音"], 1, SpecialEnum.PERCEPTION).init();
+    new PerkCard(1, "开锁", ["获得+1开锁技能, 并使开锁时的最佳范围提高10%"], 1, SpecialEnum.PERCEPTION).init();
+    new PerkCard(1, "专家级开锁", ["获得+1开锁技能, 并使开锁时的最佳范围提高10%"], 1, SpecialEnum.PERCEPTION).init();
+    new PerkCard(1, "大师级开锁", ["获得+1开锁技能, 并使开锁时的最佳范围提高10%"], 1, SpecialEnum.PERCEPTION).init();
+    new PerkCard(1, "园艺高手", ["收获植物的时候, 获得两倍收成"], 1, SpecialEnum.PERCEPTION).init();
+    new PerkCard(2, "夜眸", ["在下午6点至早上6点潜行时获得夜视能力"], 1, SpecialEnum.PERCEPTION).init();
     
     
     new PerkCard(1, "超合金骨骼", ["你肢体收到的伤害现在减少30%", "你肢体收到的伤害现在减少60%", "你肢体现在完全不受伤害"], 1, SpecialEnum.ENDURANCE).init();
@@ -322,17 +329,23 @@ function initCards() {
     new PerkCard(1, "太阳之吻", ["在早上6点到下午6点之间可以缓慢恢复辐射伤害", "在早上6点到下午6点之间可以快速恢复辐射伤害"], 1, SpecialEnum.ENDURANCE).init();
     new PerkCard(1, "解渴饮品", ["喝下液体引发疾病的概率降低30%", "喝下液体引发疾病的概率降低60%", "喝下液体引发疾病的概率降低90%"], 1, SpecialEnum.ENDURANCE).init();
     new PerkCard(1, "接种疫苗", ["你从其他生物感染到疾病的几率减少30%", "你从其他生物感染到疾病的几率减少60%", "你从其他生物感染到疾病的几率减少90%"], 1, SpecialEnum.ENDURANCE).init();
+    new PerkCard(1, "水男孩", ["游泳时你不再会收到辐射伤害, 并且可以在水下呼吸"], 1, SpecialEnum.ENDURANCE).init();
+    new PerkCard(3, "专职酒鬼", ["你绝不可能染上酒瘾"], 1, SpecialEnum.ENDURANCE).init();
+    new PerkCard(1, "乖狗狗", ["吃狗粮可以获得三倍增益"], 1, SpecialEnum.ENDURANCE).init();
+    new PerkCard(1, "修复水力发电设备", ["药物产生的口渴程度减低50%", "药物不再导致口渴"], 1, SpecialEnum.ENDURANCE).init();
     
     
     new PerkCard(1, "动物朋友", ["把你的枪对准任何低于你等级的动物, 会有25%的几率让它安静下来", "把你的枪对准任何低于你等级的动物, 会有50%的几率让它安静下来", "把你的枪对准任何低于你等级的动物, 会有75%的几率让它安静下来"], 1, SpecialEnum.CHARISMA).init();
     new PerkCard(1, "保镖", ["除了你自己之外, 每位队友将使你获得6点伤害及能量抗性(最对18)", "除了你自己之外, 每位队友将使你获得8点伤害及能量抗性(最对24)", "除了你自己之外, 每位队友将使你获得10点伤害及能量抗性(最对30)", "除了你自己之外, 每位队友将使你获得12点伤害及能量抗性(最对36)"], 1, SpecialEnum.CHARISMA).init();
     new PerkCard(1, "EMT", ["你复活的玩家将在15秒内获得生命恢复", "你复活的玩家将在30秒内获得更多的生命恢复", "你复活的玩家将在60秒内获得极多的生命恢复"], 1, SpecialEnum.CHARISMA).init();
+    new PerkCard(1, "充满魅力", ["每名队伍成员(除你自己之外) 为你增加1点魅力"], 1, SpecialEnum.CHARISMA).init();
+    new PerkCard(2, "军医", ["治疗针和消辐宁生效更快"], 1, SpecialEnum.CHARISMA).init();
     new PerkCard(1, "友谊之火", ["遭受你火焰攻击的队友会短暂地恢复生命值(不含汽油弹)", "遭受你火焰攻击的队友会短暂地恢复较多的生命值(不含汽油弹)", "遭受你火焰攻击的队友会短暂地恢复更多的生命值(不含汽油弹)"], 1, SpecialEnum.CHARISMA).init();
     new PerkCard(1, "快乐露营者", ["身处己方队伍的工坊中时, 饥饿与口渴增长速度放缓40%", "身处己方队伍的工坊中时, 饥饿与口渴增长速度放缓80%"], 1, SpecialEnum.CHARISMA).init();
     new PerkCard(1, "逍遥自在", ["受到酒精影响时, 你的运气+2", "受到酒精影响时, 你的运气+3"], 1, SpecialEnum.CHARISMA).init();
     new PerkCard(1, "苛刻的交易", ["能在售卖机器人那里获得更加优惠的买卖价格", "能在售卖机器人那里获得非常优惠的买卖价格", "能在售卖机器人那里获得极端优惠的买卖价格"], 1, SpecialEnum.CHARISMA).init();
     new PerkCard(1, "注射器", ["你复活的玩家10分钟内行动点恢复+6", "你复活的玩家10分钟内行动点恢复+12", "你复活的玩家10分钟内行动点恢复+18"], 1, SpecialEnum.CHARISMA).init();
-    new PerkCard(1, "激励", ["当你处于子对状态中, 你和你的队友们可以获得5%的额外经验值", "当你处于子对状态中, 你和你的队友们可以获得10%的额外经验值", "当你处于子对状态中, 你和你的队友们可以获得15%的额外经验值"], 1, SpecialEnum.CHARISMA).init();
+    new PerkCard(1, "激励", ["当你处组队状态中, 你和你的队友们可以获得5%的额外经验值", "当你处组队状态中, 你和你的队友们可以获得10%的额外经验值", "当你处组队状态中, 你和你的队友们可以获得15%的额外经验值"], 1, SpecialEnum.CHARISMA).init();
     new PerkCard(2, "独行侠", ["独自冒险时, 所受的伤害减少10%, 同时行动点数的恢复速度增加10%", "独自冒险时, 所受的伤害减少20%, 同时行动点数的恢复速度增加20%", "独自冒险时, 所受的伤害减少30%, 同时行动点数的恢复速度增加30%"], 1, SpecialEnum.CHARISMA).init();
     new PerkCard(1, "过度慷慨", ["体内的辐射至将增加近身攻击对目标造成25点的辐射的几率", "体内的辐射至将增加近身攻击对目标造成50点的辐射的几率"], 1, SpecialEnum.CHARISMA).init();
     new PerkCard(2, "派对男孩", ["酒精的影响变为两倍", "酒精的影响变为三倍"], 1, SpecialEnum.CHARISMA).init();
@@ -348,7 +361,9 @@ function initCards() {
     new PerkCard(1, "废土低语着", ["把你的枪对准任何低于你等级的生物, 会有25%的几率让它安静下来", "把你的枪对准任何低于你等级的生物, 会有50%的几率让它安静下来", "把你的枪对准任何低于你等级的生物, 会有75%的几率让它安静下来"], 1, SpecialEnum.CHARISMA).init();
     new PerkCard(1, "旅行中介", ["进行快速移动时少付30%的瓶盖"], 1, SpecialEnum.CHARISMA).init();
     new PerkCard(1, "卫生防疫", ["你的疾病被治愈时, 有50%的几率可以为附近的队友治疗一种疾病", "你的疾病被治愈时, 必然可以为附近的队友治疗一种疾病"], 1, SpecialEnum.CHARISMA).init();
-
+    new PerkCard(1, "多多益善", ["如果队友也有变异, 正面变异效果+25%"], 1, SpecialEnum.CHARISMA).init();
+    new PerkCard(2, "治疗之手", ["你复活的玩家将消除所有辐射值"], 1, SpecialEnum.CHARISMA).init();
+    
     
     new PerkCard(1, "装甲商", ["现在你可以制作高级护甲更改件(需要设计图)", "现在制作装甲的材料消耗减少", "你制作的护甲耐久性更高"], 1, SpecialEnum.INTELLIGENCE).init();
     new PerkCard(1, "内置电池", ["能量武器弹药的重量减轻30%", "能量武器弹药的重量减轻60%", "能量武器弹药的重量减轻90%"], 1, SpecialEnum.INTELLIGENCE).init();
@@ -365,10 +380,18 @@ function initCards() {
     new PerkCard(1, "动力师", ["现在你可以制作高级动力装甲修改件(需要设计图)", "制作动力装甲的材料消耗减少", "你制作的动力装甲耐久性提高"], 1, SpecialEnum.INTELLIGENCE).init();
     new PerkCard(1, "动力使用者", ["聚变核心的持续时间延长30%", "聚变核心的持续时间延长60%", "现在巨变核心能持续两倍时间"], 1, SpecialEnum.INTELLIGENCE).init();
     new PerkCard(1, "机器人专家", ["黑入敌对机器人有25%的几率能让它平静下来", "黑入敌对机器人有50%的几率能让它平静下来", "黑入敌对机器人有75%的几率能让它平静下来"], 1, SpecialEnum.INTELLIGENCE).init();
+    new PerkCard(1, "科学家", ["现在你可以制作能量枪(需要设计图)", "你可以制作1级能量枪械改装件(需要设计图)"], 1, SpecialEnum.INTELLIGENCE).init();
     new PerkCard(1, "专家级科学家", ["你可以制作2级能量枪械改装件(需要设计图)", "制作能量枪械消耗的材料减少"], 1, SpecialEnum.INTELLIGENCE).init();
+    new PerkCard(1, "大师级科学家", ["你可以制作3级能量枪械改装件(需要设计图)", "你制作的能量枪耐久性提高"], 1, SpecialEnum.INTELLIGENCE).init();
     new PerkCard(1, "稳定", ["穿着动力装甲时, 重型枪械获得更高精准度, 并无视目标15%护甲", "穿着动力装甲时, 重型枪械获得进一步提高的精准度, 并无视目标30%护甲", "穿着动力装甲时, 重型枪械获得绝佳精准度, 并无视目标45%护甲"], 1, SpecialEnum.INTELLIGENCE).init();
     new PerkCard(1, "武器工匠", ["你可以修复任何武器到正常最大状态的130%", "你可以修复任何武器到正常最大状态的160%", "你可以修复任何武器到正常最大状态的200%"], 1, SpecialEnum.INTELLIGENCE).init();
     new PerkCard(1, "破坏者", ["你对工坊对象的伤害+40%", "你对工坊对象的伤害+80%", "你对工坊对象的伤害+120%"], 1, SpecialEnum.INTELLIGENCE).init();
+    new PerkCard(1, "动力装甲修补匠", ["你的动力装甲损坏速度降低20%, 修复花费也更低", "你的动力装甲损坏速度降低40%, 修复花费也更低", "你的动力装甲损坏速度降低60%, 修复花费也更低"], 1, SpecialEnum.INTELLIGENCE).init();
+    new PerkCard(1, "拆解专家", ["拆解武器和护甲可以获得更多的部件"], 1, SpecialEnum.INTELLIGENCE).init();
+    new PerkCard(1, "黑客", ["获得+1黑客技能, 终端锁定时间减少"], 1, SpecialEnum.INTELLIGENCE).init();
+    new PerkCard(1, "专家级黑客", ["获得+1黑客技能, 终端锁定时间减少"], 1, SpecialEnum.INTELLIGENCE).init();
+    new PerkCard(1, "大师级黑客", ["获得+1黑客技能, 终端锁定时间减少"], 1, SpecialEnum.INTELLIGENCE).init();
+    new PerkCard(1, "化学家", ["制作药物时, 获得双倍的量"], 1, SpecialEnum.INTELLIGENCE).init();
     
     
     new PerkCard(1, "行动派男孩", ["行动点数恢复速度提高15%", "行动点数恢复速度提高30%", "行动点数恢复速度提高45%"], 1, SpecialEnum.AGILITY).init();
@@ -399,6 +422,9 @@ function initCards() {
     new PerkCard(1, "潜行", ["潜行时被侦测到额难度增加25%", "潜行时被侦测到额难度增加50%", "潜行时被侦测到额难度增加75%"], 1, SpecialEnum.AGILITY).init();
     new PerkCard(1, "通径徒步旅行者", ["食物及饮品的重量减轻30%", "食物及饮品的重量减轻60%", "食物及饮品的重量减轻90%"], 1, SpecialEnum.AGILITY).init();
     new PerkCard(1, "白色骑士", ["你的护甲损坏速度降低30%, 修复花费也更低", "你的护甲损坏速度降低60%, 修复花费也更低", "你的护甲损坏速度降低90%, 修复花费也更低"], 1, SpecialEnum.AGILITY).init();
+    new PerkCard(1, "弹药匠", ["制作弹药时产量增加40%", "制作弹药时产量增加80%"], 1, SpecialEnum.AGILITY).init();
+    new PerkCard(1, "逃脱艺术家", ["潜行甩掉敌人, 跑步不再影响潜行状态"], 1, SpecialEnum.AGILITY).init();
+    new PerkCard(1, "轻盈脚步", ["在潜行时, 不会触发地雷或地面陷阱"], 1, SpecialEnum.AGILITY).init();
     
     
     new PerkCard(1, "暴击强化", ["现在VATS暴击伤害+20%", "现在VATS暴击伤害+30%", "现在VATS暴击伤害+40%"], 1, SpecialEnum.LUCK).init();
@@ -426,6 +452,11 @@ function initCards() {
     new PerkCard(1, "折磨者", ["你的步枪攻击有5%几率造成目标肢体残废", "你的步枪攻击有10%几率造成目标肢体残废", "你的步枪攻击有15%几率造成目标肢体残废"], 1, SpecialEnum.LUCK).init();
     new PerkCard(1, "笑到最后", ["死亡时会从物品栏认出一枚解除保险的手雷"], 1, SpecialEnum.LUCK).init();
     new PerkCard(1, "盐巴保鲜", ["物品栏里的食物腐化速度减缓30%", "物品栏里的食物腐化速度减缓60%", "物品栏里的食物腐化速度减缓90%"], 1, SpecialEnum.LUCK).init();
+    new PerkCard(1, "保姆", ["在复活其他玩家时, 有50%的几率不消耗医疗针"], 1, SpecialEnum.LUCK).init();
+    new PerkCard(1, "博物馆长", ["娃娃和杂志的增益持续时间翻倍"], 1, SpecialEnum.LUCK).init();
+    new PerkCard(1, "土拨鼠", ["砍伐树木可获得双倍木材"], 1, SpecialEnum.LUCK).init();
+    new PerkCard(1, "追风者", ["在下雨或辐射风暴期间获得生命恢复", "在下雨或辐射风暴期间获得高速生命恢复"], 1, SpecialEnum.LUCK).init();
+    new PerkCard(1, "顽固基因", ["减少从辐射中变异的几率, 同时也减少消辐宁治疗变异的概率", "不会从辐射中变异, 消辐宁也无法治愈变异"], 1, SpecialEnum.LUCK).init();
 }
 
 /*
