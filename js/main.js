@@ -199,6 +199,7 @@ class PerkCard {
                                 ref.oldLevel = null;
                                 updateInfo();
                                 updatePoints();
+                                event.stopPropagation();
                             }
                         }
                         else {
@@ -207,7 +208,6 @@ class PerkCard {
                             updateInfo();
                         }
                         
-                        event.stopPropagation();
                     };
                 }
 
@@ -332,7 +332,7 @@ function initCards() {
     new PerkCard(1, "水男孩", ["游泳时你不再会收到辐射伤害, 并且可以在水下呼吸"], 1, SpecialEnum.ENDURANCE).init();
     new PerkCard(3, "专职酒鬼", ["你绝不可能染上酒瘾"], 1, SpecialEnum.ENDURANCE).init();
     new PerkCard(1, "乖狗狗", ["吃狗粮可以获得三倍增益"], 1, SpecialEnum.ENDURANCE).init();
-    new PerkCard(1, "修复水力发电设备", ["药物产生的口渴程度减低50%", "药物不再导致口渴"], 1, SpecialEnum.ENDURANCE).init();
+    new PerkCard(1, "修复水力发电", ["药物产生的口渴程度减低50%", "药物不再导致口渴"], 1, SpecialEnum.ENDURANCE).init();
     
     
     new PerkCard(1, "动物朋友", ["把你的枪对准任何低于你等级的动物, 会有25%的几率让它安静下来", "把你的枪对准任何低于你等级的动物, 会有50%的几率让它安静下来", "把你的枪对准任何低于你等级的动物, 会有75%的几率让它安静下来"], 1, SpecialEnum.CHARISMA).init();
