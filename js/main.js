@@ -20,6 +20,8 @@ const SpecialEnum = {
 
 //the array for storing perk card data.
 const cards = [[], [], [], [], [], [], []];
+//the array for storing selected cards
+const selectedDecks = [[], [], [], [], [], [], []];
 
 class PerkCard {
     constructor(cost, name, desc, level, special) {
@@ -30,6 +32,8 @@ class PerkCard {
         this.special = special;
         this.isSelected = false;
         this.oldLevel = null;
+        // noinspection JSUnusedGlobalSymbols
+        this.id = -1;
     }
     
     /*
@@ -77,6 +81,7 @@ class PerkCard {
                 let deckElement = document.getElementById(deckId);
                 deckElement.appendChild(element);
                 ref.isSelected = true;
+                selectCard(ref);
                 updatePoints();
                 return;
             }
@@ -87,6 +92,7 @@ class PerkCard {
                 deckElement.removeChild(element);
                 updatePoints();
                 ref.isSelected = false;
+                deselectCard(ref);
                 showCards(ref.special);
             }
             
@@ -229,6 +235,7 @@ class PerkCard {
         add this card into the cards array
     */
     init() {
+        this.id = cards[this.special-1].length;
         cards[this.special-1].push(this);
     }
 }
@@ -467,7 +474,7 @@ function initCards() {
     new PerkCard(1, "顽固基因", ["减少从辐射中变异的几率, 同时也减少消辐宁治疗变异的概率", "不会从辐射中变异, 消辐宁也无法治愈变异"], 1, SpecialEnum.LUCK).init();
 }
 
-/*
+/**
     show the perk cards in the card selection area.
 */
 function showCards(special) {
@@ -490,8 +497,76 @@ function showCards(special) {
     }
 }
 
+
+
+
+/////Saving state and loading state //////////////////////////////////////////////////////////
+
+const dictionary = "1234567890qQwWeErRtTyYuUiIoOpPaAsSdDfFgGhHjJkKlLzZxXcCvVbBnNmM";
+
+/**
+ * only used for keeping track of what card is selected, doesn't actually move elements around.
+ * @param perkCard
+ */
+function selectCard(perkCard) {
+    let specialId = perkCard.special - 1;
+    let deck = selectedDecks[specialId];
+    if(!deck.includes(perkCard)) {
+        deck.push(perkCard);
+    }
+}
+
+/**
+ * only used for keeping track of what card is selected, doesn't actually move elements around.
+ * @param perkCard
+ */
+function deselectCard(perkCard) {
+    let specialId = perkCard.special - 1;
+    let deck = selectedDecks[specialId];
+    let index = deck.findIndex((card) => card.id === perkCard.id);
+    if(index >= 0) {
+        console.log("test");
+        deck.splice(index, 1);
+    }
+}
+
+/**
+ * return selected card special, id, and level in an array
+ */
+function getSelectionData() {
+    let data = [];
+    for(let special = 0; special < selectedDecks.length; special++) {
+        for(let position = 0; position < selectedDecks[special].length; position++) {
+            let perkCard = selectedDecks[special][position];
+            data.push(special);
+            data.push(perkCard.id);
+            data.push(perkCard.level);
+        }
+    }
+
+    console.log(data);
+}
+
 function handleVariable() {
     let url = new URL(window.location.href);
     let parameter = url.searchParams.get("p");
     console.log(parameter);
+}
+
+
+
+/**
+ * get data string from url
+ */
+function getParameter() {
+    let url = new URL(window.location.href);
+    return url.searchParams.get("data");
+}
+
+/**
+ * put the data into address bar without reloading the page
+ * @param parameter data string
+ */
+function setParameter(parameter) {
+    window.history.replaceState(null, '辐射76加点模拟器', '?data=' + parameter);
 }
