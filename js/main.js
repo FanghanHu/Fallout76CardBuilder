@@ -1,5 +1,5 @@
 /*jslint es6:true*/
-var SpecialEnum = {
+const SpecialEnum = {
     STRENGTH : 1,
     PERCEPTION : 2,
     ENDURANCE : 3,
@@ -19,7 +19,7 @@ var SpecialEnum = {
 };
 
 //the array for storing perk card data.
-var cards = [[], [], [], [], [], [], []];
+const cards = [[], [], [], [], [], [], []];
 
 class PerkCard {
     constructor(cost, name, desc, level, special) {
@@ -90,7 +90,7 @@ class PerkCard {
                 showCards(ref.special);
             }
             
-        }
+        };
         
         function updatePoints() {
             let totalDeckPoints = 0;
@@ -100,15 +100,15 @@ class PerkCard {
                 let costElement = costs[i];
                 totalDeckPoints += parseInt(costElement.innerHTML);
             }
-            if(totalDeckPoints == 0) {
+            if(totalDeckPoints === 0) {
                 totalDeckPoints = 1;
             }
             let pointElement = document.getElementById(SpecialEnum.properties[ref.special].point);
-            pointElement.innerHTML = totalDeckPoints;
+            pointElement.innerHTML = totalDeckPoints+"";
             
-            let totalSpecial = 0
+            let totalSpecial = 0;
             let decksElement = document.getElementById("specials");
-            let totalCosts = decksElement.getElementsByClassName("speical-amount");
+            let totalCosts = decksElement.getElementsByClassName("special-amount");
             for(let i = 0; i < totalCosts.length; i++) {
                 let costElement = totalCosts[i];
                 totalSpecial += parseInt(costElement.innerHTML);
@@ -116,13 +116,14 @@ class PerkCard {
             let pointsElement = document.getElementById("points");
             pointsElement.innerHTML = (56 - totalSpecial);
         }
+
         
         /*
             return true if there is still enough points 
         */
         function hasEnoughPoints(cost) {
             let totalDeckPoints = 0;
-            let totalSpecial = 0
+            let totalSpecial = 0;
             let deckElement = document.getElementById(SpecialEnum.properties[ref.special].deck);
             let costs = deckElement.getElementsByClassName("cost");
             for(let i = 0; i < costs.length; i++) {
@@ -136,13 +137,13 @@ class PerkCard {
             }
             
             let decksElement = document.getElementById("specials");
-            let totalCosts = decksElement.getElementsByClassName("speical-amount");
+            let totalCosts = decksElement.getElementsByClassName("special-amount");
             for(let i = 0; i < totalCosts.length; i++) {
                 let costElement = totalCosts[i];
                 totalSpecial += parseInt(costElement.innerHTML);
             }
             
-            if(costs.length==0) {
+            if(costs.length===0) {
                 cost--;
             }
             
@@ -172,7 +173,7 @@ class PerkCard {
                     starElement.className += color;
                 }
 
-                if(i != ref.level - 1) {
+                if(i !== ref.level - 1) {
                     //change card to other level here:
                     starElement.onmouseenter = function() {
                         //console.log("enter: " + (i + 1));
@@ -191,7 +192,7 @@ class PerkCard {
                             updateInfo();
                         }
 
-                    }
+                    };
 
                     //change the level when on click
                     starElement.onclick = function() {
