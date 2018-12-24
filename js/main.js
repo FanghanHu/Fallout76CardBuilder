@@ -154,6 +154,7 @@ class PerkCard {
             
             return true;
         }
+
         
         /*
             update card cost, desc, star highlight, and star hovering functions.
