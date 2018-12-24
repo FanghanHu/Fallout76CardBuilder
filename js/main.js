@@ -496,6 +496,7 @@ function updatePoints() {
     }
     let pointsElement = document.getElementById("points");
     pointsElement.innerHTML = (56 - totalSpecial);
+
     updateUrl();
 }
 
@@ -601,6 +602,7 @@ function readSelectionData(selectionData) {
         perkCard.isSelected = true;
         let deckId = SpecialEnum.properties[perkCard.special].deck;
         let deckElement = document.getElementById(deckId);
+        selectCard(perkCard);
         deckElement.appendChild(perkCard.createElement());
     }
 
