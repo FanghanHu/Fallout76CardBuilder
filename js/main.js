@@ -237,6 +237,7 @@ class PerkCard {
 initCards();
 window.onload = function() {
     showCards(SpecialEnum.STRENGTH);
+    handleVariable();
 };
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -490,5 +491,6 @@ function showCards(special) {
 
 function handleVariable() {
     let url = new URL(window.location.href);
-    console.log(url.searchParams.get("p"));
+    let parameter = url.searchParams.get("p");
+    console.log(parameter);
 }
