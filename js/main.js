@@ -120,7 +120,7 @@ class PerkCard {
                 totalDeckPoints += parseInt(costElement.innerHTML);
             }
             
-            if(totalDeckPoints + cost > 15) {
+            if((ref.isSelected && totalDeckPoints > 15) || (!ref.isSelected && totalDeckPoints + cost > 15)) {
                 alert("该属性已经加满.");
                 return false;
             }

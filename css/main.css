@@ -77,6 +77,12 @@
     box-shadow: 0 0 10px gray;
     background-color: white;
     margin-top: -8.5rem;
+    transition: margin-top 0.5s;
+}
+
+.perk-card:hover+.perk-card {
+    margin-top: 0;
+    transition: margin-top 0.5s;
 }
 
 .show + .perk-card {
