@@ -119,6 +119,7 @@
 
 .card-name {
     font-size: 0.8rem;
+    margin-left: 0.3rem;
     font-weight: 700;
     color: aliceblue;
 }
@@ -175,7 +176,6 @@
 }
 
 #card-selections .card-name {
-    margin-left: 0.3rem;
     font-size: 0.9rem;
 }
 
