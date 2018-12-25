@@ -640,3 +640,11 @@ function getParameter() {
 function setParameter(parameter) {
     window.history.replaceState(null, '辐射76加点模拟器', '?data=' + parameter);
 }
+
+function copyLink() {
+    var copyText = document.getElementById("url-selector");
+    copyText.value = window.location.href;
+    copyText.select();
+    document.execCommand("copy");
+    alert("包含你的加点的网页链接已经复制到你的剪切板里了:" + copyText.value);
+}

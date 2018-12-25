@@ -6,6 +6,19 @@
     user-select: none;
 }
 
+#url-selector {
+    display:none;
+    -webkit-touch-callout: default;
+    -webkit-user-select: auto;
+    -moz-user-select: auto;
+    -ms-user-select: auto;
+    user-select: auto;
+}
+
+#browser {
+    display: none;
+}
+
 /*stats*/
 .stats-card{
     color: aliceblue;
