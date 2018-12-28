@@ -423,7 +423,7 @@ function calculation(){
 	}else{
 		$("#multiple").html(min.toFixed(2)*100+"% ~ "+max.toFixed(2)*100+"%");
 	}
-	if(minval==minval){
+	if(minval==maxval){
 		$("#estimatedValue").html(Math.round(minval+maxboom));
 	}else{
 		$("#estimatedValue").html(Math.round(minval+minboom)+"~"+Math.round(maxval+maxboom));
