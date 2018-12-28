@@ -373,11 +373,16 @@ function calculation(){
 	var sNum=$("#s-amount").html();
 	var aNum=$("#a-amount").html();
 	var weaponDamageVal=parseFloat($("#weaponDamageVal").val());
-	
+	var boom=0;
+	var minboom=0;
+	var maxboom=0;
 	var min=0;
 	var max=0;
 	var numMin=0;
 	var numMax=0;
+	var minval=0;
+	var maxval=0;
+	
 	if( isNaN(weaponDamageVal)){
 		weaponDamageVal=1;
 	}
@@ -397,21 +402,31 @@ function calculation(){
             	}
             	numMax+=perkCard.attribute.levelValue[le].max;
 			}else if(perkCard.attribute.type==1){
-				min+=perkCard.attribute.levelValue[le].min;
-				max+=perkCard.attribute.levelValue[le].max;
+				if(perkCard.myid==121){
+					boom=perkCard.attribute.levelValue[le].max+1;
+				}else{
+					min+=perkCard.attribute.levelValue[le].min;
+					max+=perkCard.attribute.levelValue[le].max;
+				}
 			}
         }
     }
-	var str=Math.round((weaponDamageVal+numMin)*(1+min))+"~"+Math.round((weaponDamageVal+numMax)*(1+max));
+	minval=(weaponDamageVal+numMin)*(1+min);
+	maxval=(weaponDamageVal+numMax)*(1+max);
+
+	if(boom!=0){
+		minboom=minval*0.25*boom;
+		maxboom=maxval*0.25*boom;
+	}
 	if(min==max){
 		$("#multiple").html(max.toFixed(2)*100+"%");
 	}else{
 		$("#multiple").html(min.toFixed(2)*100+"% ~ "+max.toFixed(2)*100+"%");
 	}
-	if(numMin==numMax&&min==max){
-		$("#estimatedValue").html(Math.round((weaponDamageVal+numMin)*(1+min)));
+	if(minval==minval){
+		$("#estimatedValue").html(Math.round(minval+maxboom));
 	}else{
-		$("#estimatedValue").html(str);
+		$("#estimatedValue").html(Math.round(minval+minboom)+"~"+Math.round(maxval+maxboom));
 	}
 	
 	
