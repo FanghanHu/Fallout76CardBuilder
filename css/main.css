@@ -292,6 +292,7 @@
     
     .stats-card{
         height: 3rem;
+        width: 100%;
         margin-bottom: 0.5rem;
     }
     
@@ -314,5 +315,13 @@
         flex-direction: column;
         margin: 0 0 0.5rem 0;
         padding: 0;
+    }
+
+    #card-selections>.perk-card {
+        width: 8rem;
+    }
+
+    #card-selections .card-name {
+        font-size: 0.7rem;
     }
 }
