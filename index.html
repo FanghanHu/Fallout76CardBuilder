@@ -23,8 +23,7 @@
     </head>
     
     <body>
-        <div class="container">s
-
+        <div class="container">
             <div class="text-center bg-warning p-5 rounded mt-2" id="browser">
                 <h4>看起来你用的浏览器有点老了呢, 如果这个页面显示不正常, 请尝试下载最新的浏览器.</h4>
                 <span>由于IE没有ES6支持, 所以IE等浏览器无法正常显示这个页面</span>
@@ -32,7 +31,7 @@
 
             <script src="js/browserCheck.js?v=1.01"></script>
 
-            <div class="jumbotron mt-2 text-white" style="background-color: #5b8f92 !important; font-family: 'ZCOOL KuaiLe', cursive;">
+            <div style="background-color: #5b8f92 !important; font-family: 'ZCOOL KuaiLe', cursive;" id="header">
                 <h1 class="font-weight-bold text-center">辐射76加点模拟器</h1>
                 <div id="carouselControls" class="carousel slide" data-ride="carousel" data-interval="10000">
                     <div class="carousel-inner">
@@ -56,11 +55,11 @@
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="carousel-control-prev-icon" aria-hidden="true" id="left-arrow"></span>
                         <span class="sr-only">Previous</span>
                     </a>
                     <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="carousel-control-next-icon" aria-hidden="true" id="right-arrow"></span>
                         <span class="sr-only">Next</span>
                     </a>
                 </div>

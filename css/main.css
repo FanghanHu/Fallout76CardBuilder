@@ -19,6 +19,21 @@
     display: none;
 }
 
+#header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+    color: white;
+    border-radius: 0.5rem;
+    margin: 2rem auto;
+}
+
+#carouselControls {
+    width: 90%;
+}
+
 /*stats*/
 .stats-card{
     color: aliceblue;
@@ -253,6 +268,24 @@
 }
 
 @media only screen and (max-width: 1007px) {
+
+    #carouselControls {
+        height: 4rem;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #left-arrow {
+        position: relative;
+        left: -80%;
+    }
+
+    #right-arrow {
+        position: relative;
+        right: -80%;
+    }
+
+
     #specials {
         flex-direction: column;
     }
