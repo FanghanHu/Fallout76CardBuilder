@@ -7,7 +7,7 @@
 }
 
 body {
-    overflow-x: hidden;
+
 }
 
 #url-selector {
@@ -305,9 +305,10 @@ body {
     }
     
     #specials>div>p {
+        width: 3rem;
         position: relative;
         top: 0.1rem;
-        left: 5rem;
+        left: 15rem;
         color: aliceblue;
     }
     
