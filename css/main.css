@@ -6,6 +6,10 @@
     user-select: none;
 }
 
+body {
+    overflow-x: hidden;
+}
+
 #url-selector {
     display:none;
     -webkit-touch-callout: default;
