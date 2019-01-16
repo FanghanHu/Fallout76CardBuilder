@@ -34,7 +34,88 @@ header a {
 header a:hover {
     color: #d38c00;
 }
-/*stats*/
+/*display*/
+#display-section
+{
+    margin: 1rem 2rem;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#points-section {
+    margin: 0.5rem;
+    font-size: 1.5rem;
+    font-family: "Noto Sans SC", sans-serif;
+    color: #5c5c5c;
+    font-weight: bold;
+    height: 2rem;
+    text-align: right;
+}
+
+#stats-section {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.stats-card {
+    flex: 0 0 8rem;
+    border-radius: 1rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.stats-chinese-name {
+    white-space: nowrap;
+    font-family: "Noto Sans SC", sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    color: aliceblue;
+    line-height: 1.1em;
+}
+
+.stats-english-name {
+    color: aliceblue;
+    font-size: 10rem;
+    line-height: 0.6em;
+    font-weight: bold;
+}
+
+.stats-display {
+    font-size: 1.5rem;
+    position: relative;
+    bottom: -2rem;
+}
+
+.stats-card:nth-child(1) {
+    background-color: #618869;
+}
+
+.stats-card:nth-child(2) {
+    background-color: #595034;
+}
+
+.stats-card:nth-child(3) {
+    background-color: #5CA7AF;
+}
+
+.stats-card:nth-child(4) {
+    background-color: #CA7336;
+}
+
+.stats-card:nth-child(5) {
+    background-color: #929175;
+}
+
+.stats-card:nth-child(6) {
+    background-color: #C18768;
+}
+
+.stats-card:nth-child(7) {
+    background-color: #9390A4;
+}
+
 /*control*/
 #control-section {
     margin: 1rem 2rem;
@@ -47,10 +128,10 @@ header a:hover {
 /*footer*/
 
 
-@media only screen and (min-width: 1400px) {
+@media only screen and (min-width: 1280px) {
     /*wide screen*/
     .container-fluid {
-        width: 1400px;
+        width: 1280px;
         margin: 0 auto;
     }
 }
