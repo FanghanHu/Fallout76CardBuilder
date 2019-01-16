@@ -53,3 +53,14 @@ function loadData() {
         }
     })
 }
+
+/**
+ * using an hidden element to copy link into user's clipboard
+ */
+function copyLink() {
+    var copyText = document.getElementById("url-selector");
+    copyText.value = window.location.href;
+    copyText.select();
+    document.execCommand("copy");
+    alert("已复制包含加点内容的连接:\n" + copyText.value);
+}

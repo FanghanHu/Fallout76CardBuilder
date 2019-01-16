@@ -3,6 +3,8 @@
     padding: 0;
 }
 
+
+/*header*/
 .carousel-inner {
     margin: 0 auto;
     width: 90%;
@@ -17,7 +19,6 @@
     height: 3.3em;
     line-height: 1.1em;
 }
-
 header {
     margin: 2rem;
     padding: 2rem !important;
@@ -33,6 +34,18 @@ header a {
 header a:hover {
     color: #d38c00;
 }
+/*stats*/
+/*control*/
+#control-section {
+    margin: 1rem 2rem;
+    padding: 1rem;
+    font-size: 0;
+    border-radius: 0.3rem;
+    background-color: #5a6268;
+}
+
+/*footer*/
+
 
 @media only screen and (min-width: 1400px) {
     /*wide screen*/
@@ -47,5 +60,14 @@ header a:hover {
 
     header {
         margin: 0;
+    }
+
+    #control-section {
+        margin: 0;
+        padding: 0.5rem;
+    }
+
+    #control-section>* {
+        padding: 0 !important;
     }
 }

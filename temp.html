@@ -91,8 +91,29 @@
             </a>
         </div>
     </header>
-    
 
+    <div id="display-section">
+
+    </div>
+
+    <div id="control-section">
+        <h4 class="d-inline-block w-50 pl-2 text-white" style="font-family: 'ZCOOL KuaiLe',serif">请选择卡片:</h4>
+        <div class="d-inline-flex w-50 pr-2 flex-row-reverse" id="control-buttons">
+            <a class="mx-2 btn btn-danger text-white" onclick='if(confirm("你确定要放弃目前的加点吗?")) window.open("index.html", "_self");'>重新加点</a>
+            <a class="mx-2 btn btn-primary text-white" href="https://github.com/FanghanHu/Fallout76CardBuilder/issues">反馈</a>
+            <button class="mx-2 btn btn-success text-white" onclick="copyLink()">分享</button>
+        </div>
+        <div id="card-selection">
+
+        </div>
+    </div>
+
+    <footer class="text-center">
+        <span class="d-block mt-5">未经许可, 请勿转载</span>
+        <span class="d-block mb-2">Copyright 2018, Fanghan Hu</span>
+    </footer>
+    <!--suppress HtmlFormInputWithoutLabel -->
+    <input type="text" value=":)" id="url-selector" style="width: 1px; border: none">
 </div>
 </body>
 </html>
