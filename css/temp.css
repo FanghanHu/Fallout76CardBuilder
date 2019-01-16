@@ -1,0 +1,51 @@
+.container-fluid {
+    margin:0;
+    padding: 0;
+}
+
+.carousel-inner {
+    margin: 0 auto;
+    width: 90%;
+
+}
+.control {
+    width: 5%;
+}
+
+.carousel-item {
+    text-align: center;
+    height: 3.3em;
+    line-height: 1.1em;
+}
+
+header {
+    margin: 2rem;
+    padding: 2rem !important;
+    background-color: #5b8f92 !important;
+    font-family: 'ZCOOL KuaiLe', cursive;
+    color: white;
+}
+
+header a {
+    color: white;
+}
+
+header a:hover {
+    color: #d38c00;
+}
+
+@media only screen and (min-width: 1400px) {
+    /*wide screen*/
+    .container-fluid {
+        width: 1400px;
+        margin: 0 auto;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    /*small screen*/
+
+    header {
+        margin: 0;
+    }
+}
