@@ -89,12 +89,14 @@ function init() {
 }
 
 function showSelectableCards(special) {
+    var fadeTime = 100;
     var $cardSelection = $("#card-selection");
     $cardSelection.empty();
     for(var i = 0; i < selectable[special].length; i++) {
         var card = createCardElement(selectable[special][i]);
         $cardSelection.append(card);
-        $(card).hide().fadeIn(Math.floor(Math.random() * 600));
+        $(card).hide().fadeIn(fadeTime);
+        fadeTime+=100;
     }
 }
 
@@ -129,7 +131,7 @@ function getCost(cardData) {
 
 /**
  * @param cardData the card's data, a card level is expected to present
- * @returns card description depends on card level
+ * @returns string description depends on card level
  */
 function getDescription(cardData) {
     if(cardData.hasOwnProperty("desc") && cardData.hasOwnProperty("level")) {
@@ -142,10 +144,17 @@ function getDescription(cardData) {
 /**
  * Create an card element using the given card data
  * @param cardData
- * @param isSelected true if the created element should represent an selected card.
  */
-function createCardElement(cardData, isSelected) {
+function createCardElement(cardData) {
     var card = document.createElement("div");
+    $(card).data("cardData", cardData);
+
+    // function for adding or removing cardData from array
+    // $(card).on("click", function () {
+    //    selectable[cardData.special].splice($.inArray($(card).data("cardData"), selectable[cardData.special]), 1);
+    //    showSelectableCards(cardData.special);
+    // });
+
     card.className = "perk-card";
     if(cardData.hasOwnProperty("special")) {
         card.className += " " + SpecialEnum.name[cardData.special];
