@@ -1,5 +1,5 @@
 .container-fluid {
-    margin:0;
+    margin: 0;
     padding: 0;
 }
 
@@ -10,6 +10,7 @@
     width: 90%;
 
 }
+
 .control {
     width: 5%;
 }
@@ -19,6 +20,7 @@
     height: 3.3em;
     line-height: 1.1em;
 }
+
 header {
     margin: 2rem;
     padding: 2rem !important;
@@ -34,9 +36,9 @@ header a {
 header a:hover {
     color: #d38c00;
 }
+
 /*display*/
-#display-section
-{
+#display-section {
     margin: 1rem 2rem;
 
     display: flex;
@@ -64,6 +66,15 @@ header a:hover {
     border-radius: 1rem;
     text-align: center;
     margin-bottom: 2rem;
+    color: aliceblue;
+    transition: all 0.5s ease-out;
+}
+
+.stats-card:hover {
+    cursor: pointer;
+    box-shadow: #00d400 0 0 10px;
+    color: #00d400;
+    transition: all 0.5s ease-out;
 }
 
 .stats-chinese-name {
@@ -71,21 +82,39 @@ header a:hover {
     font-family: "Noto Sans SC", sans-serif;
     font-weight: 700;
     font-size: 2rem;
-    color: aliceblue;
     line-height: 1.1em;
 }
 
 .stats-english-name {
-    color: aliceblue;
     font-size: 10rem;
     line-height: 0.6em;
     font-weight: bold;
 }
 
 .stats-display {
+    color: black;
     font-size: 1.5rem;
     position: relative;
     bottom: -2rem;
+}
+
+#perk-section {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.perk-deck {
+    flex: 0 0 10rem;
+}
+
+.perk-deck .perk-card {
+    margin-top: -10rem;
+}
+
+.perk-deck .perk-card:first-child {
+    margin-top: 0;
 }
 
 .stats-card:nth-child(1) {
@@ -125,6 +154,132 @@ header a:hover {
     background-color: #5a6268;
 }
 
+#card-selection {
+    margin: 1rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-basis: max-content;
+    justify-content: space-around;
+}
+
+#card-selection .perk-card {
+    margin-top: 1rem;
+}
+
+/*perk-card*/
+.strength .active-star {
+    color: #618869;
+}
+
+.strength .perk-card-header {
+    background-color: #618869;
+
+}
+
+.perception .active-star {
+    color: #595034;
+}
+
+.perception .perk-card-header {
+    background-color: #595034;
+}
+
+.endurance .active-star {
+    color: #5CA7AF;
+}
+
+.endurance .perk-card-header {
+    background-color: #5CA7AF;
+}
+
+.charisma .active-star {
+    color: #CA7336;
+}
+
+.charisma .perk-card-header {
+    background-color: #CA7336;
+}
+
+.intelligence .active-star {
+    color: #929175;
+}
+
+.intelligence .perk-card-header {
+    background-color: #929175;
+}
+
+.agility .active-star {
+    color: #C18768;
+}
+
+.agility .perk-card-header {
+    background-color: #C18768;
+}
+
+.luck .active-star {
+    color: #9390A4;
+}
+
+.luck .perk-card-header {
+    background-color: #9390A4;
+}
+
+.perk-card {
+    border-radius: 0.5rem;
+    background-color: white;
+    width: 10rem;
+    position: relative;
+    box-shadow: 1px 1px 5px #555;
+}
+
+.perk-card-header {
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.perk-card-cost {
+    display: inline-block;
+    background: white;
+    border-radius: 0.5rem;
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    text-align: center;
+    margin: 0.2rem;
+}
+
+.perk-card-name {
+    font-family: "Noto Sans SC", sans-serif;
+    font-size: 0.9rem;
+    color: white;
+}
+
+.perk-card-body > p {
+    margin: 0.5rem;
+    height: 7rem;
+    font-size: 0.9rem;
+}
+
+.perk-card-body > p::before {
+    content: ' ';
+    width: 1rem;
+    display: inline-block;
+}
+
+.perk-card-footer {
+    display: flex;
+    justify-content: center;
+    height: 1.8rem;
+    font-size: 0;
+}
+
+.star {
+    font-size: 1.3rem;
+    color: gray;
+    padding: 0;
+    margin-bottom: 0.2rem;
+}
+
 /*footer*/
 
 
@@ -138,7 +293,6 @@ header a:hover {
 
 @media only screen and (max-width: 768px) {
     /*small screen*/
-
     header {
         margin: 0;
     }
@@ -148,7 +302,7 @@ header a:hover {
         padding: 0.5rem;
     }
 
-    #control-section>* {
+    #control-section > * {
         padding: 0 !important;
     }
 }
