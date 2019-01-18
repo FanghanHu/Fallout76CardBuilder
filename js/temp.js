@@ -127,6 +127,10 @@ function getCost(cardData) {
     return undefined;
 }
 
+/**
+ * @param cardData the card's data, a card level is expected to present
+ * @returns card description depends on card level
+ */
 function getDescription(cardData) {
     if(cardData.hasOwnProperty("desc") && cardData.hasOwnProperty("level")) {
         return cardData.desc[cardData.level-1];
