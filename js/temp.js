@@ -84,10 +84,53 @@ function init() {
     $("#stats-section").delegate(".stats-card", "click", function () {
         showSelectableCards($(this).index());
     })
-
-
 }
 
+/**
+ * add the given card to the given array, if the a data set with the same card name exists, replace it.
+ * if multiple card with the same name existed, replace the first one, and remove the rest.
+ * @param card
+ * @param array
+ */
+function addCardToArray(card, array) {
+    var found = false;
+    for(var i = 0; i < array.length; i++) {
+        var cardData = array[i];
+        if(cardData.name === card.name) {
+            if(!found) {
+                found = true;
+                array[i] = card;
+            } else {
+                array.splice(i, 1);
+                i--;
+            }
+        }
+    }
+
+    if(!found) {
+        array.push(card);
+    }
+}
+
+/**
+ * remove the given card from given array, if such card doesn't exist, do nothing.
+ * @param card
+ * @param array
+ */
+function removeCardFromArray(card, array) {
+    var result = array.filter(function (cardData) {
+        return cardData.name !== card.name;
+    });
+    //clear array
+    array.length = 0;
+    //push all values of result into array
+    Array.prototype.push.apply(array, result);
+}
+
+/**
+ * show the set of selectable cards from the given special in the selection area.
+ * @param special SpecialEnum values.
+ */
 function showSelectableCards(special) {
     var fadeTime = 100;
     var $cardSelection = $("#card-selection");
@@ -147,13 +190,8 @@ function getDescription(cardData) {
  */
 function createCardElement(cardData) {
     var card = document.createElement("div");
+    //All card elements carry cardData
     $(card).data("cardData", cardData);
-
-    // function for adding or removing cardData from array
-    // $(card).on("click", function () {
-    //    selectable[cardData.special].splice($.inArray($(card).data("cardData"), selectable[cardData.special]), 1);
-    //    showSelectableCards(cardData.special);
-    // });
 
     card.className = "perk-card";
     if(cardData.hasOwnProperty("special")) {
@@ -204,14 +242,38 @@ function createCardElement(cardData) {
 }
 
 /**
- * move a card from selectable to selected, point calculation should be done here
- * @param card
+ * Move a card from selectable to selected and update stats
+ * Check return value before updating UI.
+ * This function does NOT handle the UI.
+ * @param cardData
+ * @return number 0 if stats condition allows this action, -1 if there isn't enough special stats and this card can't be added.
+ * -2 if there isn't enough ability points left
  */
-function selectCard(card) {
-
+function selectCard(cardData) {
+    //calculate stats
+    var cost = getCost(cardData);
+    //other card's cost
+    var otherCost = 0;
+    selected[cardData.special].each(function (card) {
+        otherCost+=getCost(card);
+    })
+    if(cost + otherCost > 15) {
+        //when total stats points will exceed 15
+        return -1;
+    }
+    var pointCost = cost - special[cardData.special] + otherCost;
+    if(pointCost > points) {
+        //when there isn't enough ability point left
+        return 2;
+    }
+    //adding the card, and update stats
+    points-=pointCost;
+    special[cardData.special] = otherCost + cost;
+    removeCardFromArray(cardData, selectable[cardData.special]);
+    addCardToArray(cardData, selected[cardData.special]);
 }
 
-function deselectCard(card) {
+function deselectCard(cardData) {
 
 }
 
