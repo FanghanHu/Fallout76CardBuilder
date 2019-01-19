@@ -68,6 +68,8 @@ header a:hover {
     margin-bottom: 2rem;
     color: aliceblue;
     transition: all 0.5s ease-out;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 .stats-card:hover {
