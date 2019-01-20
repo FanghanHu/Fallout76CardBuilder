@@ -77,13 +77,66 @@ function loadData() {
  * setup events
  */
 function init() {
-
     /**
      * show selectable cards when clicking a stats card.
      */
     $("#stats-section").delegate(".stats-card", "click", function () {
         showSelectableCards($(this).index());
     })
+
+    /**
+     * show leveled card info when hovering on stars.
+     */
+    $("#perk-section").delegate(".star", "mouseenter", null, function () {
+        var displayLevel = $(this).index() + 1;
+        updateLevel(this.closest(".perk-card"), displayLevel);
+    });
+    $("#card-selection").delegate(".star", "mouseenter", null, function () {
+        var displayLevel = $(this).index() + 1;
+        updateLevel(this.closest(".perk-card"), displayLevel);
+    });
+    $("#perk-section").delegate(".star", "mouseleave", null, function () {
+        updateLevel(this.closest(".perk-card"), undefined);
+    });
+    $("#card-selection").delegate(".star", "mouseleave", null, function () {
+        updateLevel(this.closest(".perk-card"), undefined);
+    });
+
+    /**
+     * TODO: update card level on clicking stars
+     * Note: check stats requirement when clicking in perk-deck, consider touch event
+     */
+
+    /**
+     * TODO: select card when clicking in #card-selection
+     */
+
+    /**
+     * TODO: remove card when clicking a remove button in #perk-deck
+     */
+}
+
+/**
+ * Change the card level of the given card element(UI), also updates the element's related cardData
+ * Should not be used on
+ * @param cardElement
+ * @param level
+ * @param isRealLevel change
+ */
+function updateLevel(cardElement, level, isRealLevel) {
+    var $cardElement = $(cardElement);
+    var cardData = $cardElement.data("cardData");
+    if(isRealLevel) {
+        if(cardData.level !== level) {
+            cardData.level = level;
+            $cardElement.replaceWith(createCardElement(cardData));
+        }
+    } else {
+        if(cardData.displayLevel !== level) {
+            cardData.displayLevel = level;
+            $cardElement.replaceWith(createCardElement(cardData));
+        }
+    }
 }
 
 /**
@@ -163,7 +216,8 @@ function getCost(cardData) {
     {
         if(cardData.hasOwnProperty("level"))
         {
-            return cardData.initialCost + cardData.level - 1;
+            var level = getDisplayLevel(cardData);
+            return cardData.initialCost + level - 1;
         }
 
         return cardData.initialCost;
@@ -178,7 +232,8 @@ function getCost(cardData) {
  */
 function getDescription(cardData) {
     if(cardData.hasOwnProperty("desc") && cardData.hasOwnProperty("level")) {
-        return cardData.desc[cardData.level-1];
+        var level = getDisplayLevel(cardData);
+        return cardData.desc[level-1];
     }
 
     return "error reading card description."
@@ -221,16 +276,20 @@ function createCardElement(cardData) {
     desc.textContent = getDescription(cardData);
     cardBody.appendChild(desc);
 
+    //TODO: add a remove button in card body and style it in css, make it only appear in .perk-deck
+
     var cardFooter = document.createElement("div");
     cardFooter.className = "perk-card-footer";
     card.appendChild(cardFooter);
+
+    var level = getDisplayLevel(cardData);
 
     if(cardData.hasOwnProperty("desc") && cardData.hasOwnProperty("level")) {
         for(var i = 0; i < cardData.desc.length; i++)
         {
             var star = document.createElement("i");
             star.className = "fas fa-star star";
-            if(i < cardData.level)
+            if(i < level)
             {
                 star.className += " active-star";
             }
@@ -239,6 +298,19 @@ function createCardElement(cardData) {
     }
 
     return card;
+}
+
+/**
+ * if the card has a displayLevel return it, else return level instead.
+ * @param cardData
+ * @return number
+ */
+function getDisplayLevel(cardData) {
+    var level = cardData.level;
+    if(cardData.hasOwnProperty("displayLevel") && cardData.displayLevel !== undefined) {
+        level = cardData.displayLevel;
+    }
+    return level;
 }
 
 /**
