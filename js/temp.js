@@ -97,9 +97,20 @@ function init() {
     });
     $("#perk-section").delegate(".star", "mouseleave", null, function () {
         updateLevel(this.closest(".perk-card"), undefined);
+        return false;
     });
     $("#card-selection").delegate(".star", "mouseleave", null, function () {
         updateLevel(this.closest(".perk-card"), undefined);
+        return false;
+    });
+    //to deal with mouseleave inconsistency
+    $("#perk-section").delegate(".perk-card-footer", "mouseleave", null, function () {
+        updateLevel(this.closest(".perk-card"), undefined);
+        return false;
+    });
+    $("#card-selection").delegate(".perk-card-footer", "mouseleave", null, function () {
+        updateLevel(this.closest(".perk-card"), undefined);
+        return false;
     });
 
     /**
@@ -108,8 +119,26 @@ function init() {
      */
 
     /**
-     * TODO: select card when clicking in #card-selection
+     * select card when clicking in #card-selection
      */
+    $("#card-selection").delegate(".perk-card", "click", null, function () {
+        var $this = $(this);
+        var cardData = $this.data("cardData");
+        switch (checkStats(cardData)) {
+            case -2:
+                alert("剩余点数不足.");
+                break;
+            case -1:
+                alert("你最高只能将一项属性加到15.");
+                break;
+            case 0:
+                selectCard(cardData);
+                updateStats();
+                $this.remove();
+                $(".perk-deck").eq(cardData.special).append(createCardElement(cardData));
+                break;
+        }
+    });
 
     /**
      * TODO: remove card when clicking a remove button in #perk-deck
@@ -210,13 +239,20 @@ function copyLink() {
 /**
  * returns the actual amount of cost of a given cost
  * @param cardData
+ * @param isRealLevel boolean true if it should get the true cost instead of display cost.
+ * false if it should get the display value.
  */
-function getCost(cardData) {
+function getCost(cardData, isRealLevel) {
     if(cardData.hasOwnProperty("initialCost"))
     {
         if(cardData.hasOwnProperty("level"))
         {
-            var level = getDisplayLevel(cardData);
+            var level = 1;
+            if(isRealLevel) {
+                level = cardData.level;
+            } else {
+                level = getDisplayLevel(cardData);
+            }
             return cardData.initialCost + level - 1;
         }
 
@@ -314,36 +350,49 @@ function getDisplayLevel(cardData) {
 }
 
 /**
- * Move a card from selectable to selected and update stats.
- * Note: Check return value before updating UI.
- * This function does NOT handle the UI.
- * This function assume the given card can be selected, and selected array doesn't contain such card.
+ * Check if the given card can be selected.
  * @param cardData
  * @return number 0 if stats condition allows this action, -1 if there isn't enough special stats and this card can't be added.
  * -2 if there isn't enough ability points left
  */
-function selectCard(cardData) {
-    //calculate stats
-    var cost = getCost(cardData);
-    //other card's cost
-    var otherCost = 0;
-    selected[cardData.special].each(function (card) {
-        otherCost+=getCost(card);
-    })
-    if(cost + otherCost > 15) {
-        //when total stats points will exceed 15
+function checkStats(cardData) {
+    var tempDeck = selected[cardData.special].slice();
+    addCardToArray(cardData, tempDeck);
+
+    var totalStats = 0;
+    tempDeck.forEach(function (card) {
+        totalStats += getCost(card, true);
+    });
+    if(totalStats > 15) {
         return -1;
     }
-    var pointCost = cost - special[cardData.special] + otherCost;
-    if(pointCost > points) {
-        //when there isn't enough ability point left
-        return 2;
+
+    var totalSpecial = 0;
+    for(var i = 0; i < special.length; i++) {
+        if(i !== cardData.special) {
+            totalSpecial += special[i];
+        } else {
+            totalSpecial += totalStats;
+        }
     }
-    //adding the card, and update stats
-    points-=pointCost;
-    special[cardData.special] = otherCost + cost;
+    if(totalSpecial > 56) {
+        return -2;
+    }
+
+    return 0;
+}
+
+/**
+ * Move a card from selectable to selected and update stats.
+ * Note: Check return value before updating UI.
+ * This function does NOT handle the UI.
+ * This function assume the given card can be selected, and doesn't check on its own.
+ * @param cardData
+ */
+function selectCard(cardData) {
     removeCardFromArray(cardData, selectable[cardData.special]);
     addCardToArray(cardData, selected[cardData.special]);
+    updateStats();
 }
 
 /**
@@ -353,14 +402,34 @@ function selectCard(cardData) {
  * @param cardData
  */
 function deselectCard(cardData) {
-    var cost = getCost(cardData);
-    while(special[cardData.special] - cost < 1){
-        cost--;
-    }
-    special[cardData.special] -= cost;
-    points[cardData.special] += cost;
     removeCardFromArray(cardData, selected[cardData.special]);
     addCardToArray(cardData, selectable[cardData.special]);
+    updateStats();
+}
+
+/**
+ * recalculate stats and display them on the UI
+ */
+function updateStats() {
+    for(var i = 0; i < selected.length; i++) {
+        var cost = 0;
+        selected[i].forEach(function (cardData) {
+            cost+=getCost(cardData, true);
+        });
+        if(cost < 1) {
+            cost = 1;
+        }
+        special[i] = cost;
+        $(".stats").eq(i).text(cost);
+    }
+
+    var totalSpecial = 0;
+    special.forEach(function (stat) {
+        totalSpecial += stat;
+    })
+
+    points = 56 - totalSpecial;
+    $("#points").text(points);
 }
 
 /**
