@@ -242,9 +242,10 @@ function createCardElement(cardData) {
 }
 
 /**
- * Move a card from selectable to selected and update stats
- * Check return value before updating UI.
+ * Move a card from selectable to selected and update stats.
+ * Note: Check return value before updating UI.
  * This function does NOT handle the UI.
+ * This function assume the given card can be selected, and selected array doesn't contain such card.
  * @param cardData
  * @return number 0 if stats condition allows this action, -1 if there isn't enough special stats and this card can't be added.
  * -2 if there isn't enough ability points left
@@ -273,15 +274,21 @@ function selectCard(cardData) {
     addCardToArray(cardData, selected[cardData.special]);
 }
 
-function deselectCard(cardData) {
-
-}
-
 /**
- * update
+ * Deselect card and recalculate stats
+ * This function does NOT handle UI
+ * This function assume the selected array contains 1 given card, and only contain one copy.
+ * @param cardData
  */
-function updateBuild() {
-
+function deselectCard(cardData) {
+    var cost = getCost(cardData);
+    while(special[cardData.special] - cost < 1){
+        cost--;
+    }
+    special[cardData.special] -= cost;
+    points[cardData.special] += cost;
+    removeCardFromArray(cardData, selected[cardData.special]);
+    addCardToArray(cardData, selectable[cardData.special]);
 }
 
 /**
