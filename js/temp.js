@@ -312,6 +312,10 @@ function createCardElement(cardData) {
     desc.textContent = getDescription(cardData);
     cardBody.appendChild(desc);
 
+    var remove = document.createElement("i");
+    remove.className = "fas fa-times remove-btn";
+    cardBody.appendChild(remove);
+
     //TODO: add a remove button in card body and style it in css, make it only appear in .perk-deck
 
     var cardFooter = document.createElement("div");
@@ -390,6 +394,7 @@ function checkStats(cardData) {
  * @param cardData
  */
 function selectCard(cardData) {
+    cardData.displayLevel = undefined;
     removeCardFromArray(cardData, selectable[cardData.special]);
     addCardToArray(cardData, selected[cardData.special]);
     updateStats();

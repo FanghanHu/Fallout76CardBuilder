@@ -112,7 +112,7 @@ header a:hover {
 }
 
 .perk-deck .perk-card {
-    margin-top: -10rem;
+    margin-top: -10.5rem;
 }
 
 .perk-deck .perk-card:first-child {
@@ -234,6 +234,12 @@ header a:hover {
     box-shadow: 1px 1px 5px #555;
 }
 
+.perk-deck .perk-card:hover {
+    box-sizing: border-box;
+    box-shadow: 1px 1px 5px #8b8b00;
+    z-index: 2;
+}
+
 .perk-card-header {
     border-radius: 0.5rem 0.5rem 0 0;
 }
@@ -256,9 +262,13 @@ header a:hover {
     color: white;
 }
 
+.perk-card-body {
+    position: relative;
+    height: 8rem;
+}
+
 .perk-card-body > p {
     margin: 0.5rem;
-    height: 7rem;
     font-size: 0.9rem;
 }
 
@@ -266,6 +276,30 @@ header a:hover {
     content: ' ';
     width: 1rem;
     display: inline-block;
+}
+
+.remove-btn {
+    position: absolute;
+    display: block;
+    bottom: 0.5rem;
+    width: 4rem;
+    left: 3rem;
+    text-align: center;
+    font-size: 2rem;
+    color: white;
+    box-shadow: 1px 1px 5px gray;
+    border-radius: 0.4rem;
+    background-color: gray;
+    transition: all 0.7s;
+}
+
+.remove-btn:hover {
+    background-color: #666;
+    transition: all 0.7s;
+}
+
+#card-selection .remove-btn {
+    display: none;
 }
 
 .perk-card-footer {
