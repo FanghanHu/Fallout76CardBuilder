@@ -361,8 +361,6 @@ function createCardElement(cardData) {
     remove.className = "fas fa-times remove-btn";
     cardBody.appendChild(remove);
 
-    //TODO: add a remove button in card body and style it in css, make it only appear in .perk-deck
-
     var cardFooter = document.createElement("div");
     cardFooter.className = "perk-card-footer";
     card.appendChild(cardFooter);
@@ -478,7 +476,7 @@ function updateStats() {
     var totalSpecial = 0;
     special.forEach(function (stat) {
         totalSpecial += stat;
-    })
+    });
 
     points = 56 - totalSpecial;
     $("#points").text(points);
@@ -582,8 +580,6 @@ function readSelectionData(selectionData) {
     if(selectionData == null) {
         return;
     }
-
-    console.log(selectionData);
 
     while(selectionData.length > 0) {
         var special = selectionData.shift();

@@ -46,10 +46,10 @@ header a:hover {
 }
 
 #points-section {
-    margin: 0.5rem;
-    font-size: 1.5rem;
+    margin: 1rem;
+    font-size: 2rem;
     font-family: "Noto Sans SC", sans-serif;
-    color: #5c5c5c;
+    color: #a8a8a8;
     font-weight: bold;
     height: 2rem;
     text-align: right;
@@ -108,7 +108,8 @@ header a:hover {
 }
 
 .perk-deck {
-    flex: 0 0 10rem;
+    margin-top: 1rem;
+    flex: 0 0 calc(10rem + 6px);
 }
 
 .perk-deck .perk-card {
