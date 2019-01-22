@@ -114,9 +114,32 @@ function init() {
     });
 
     /**
-     * TODO: update card level on clicking stars
-     * Note: check stats requirement when clicking in perk-deck, consider touch event
+     * update card level on clicking stars
      */
+    $("#perk-section").delegate(".star", "click", null, function () {
+        var $this = $(this);
+        var targetLevel = $(this).index() + 1;
+        var $card = $this.closest(".perk-card");
+        var dataCopy = Object.assign({}, $card.data("cardData"));
+        dataCopy.level = targetLevel;
+        switch (checkStats(dataCopy)) {
+            case -2:
+                alert("剩余点数不足.");
+                break;
+            case -1:
+                alert("你最高只能将一项属性加到15.");
+                break;
+            case 0:
+                selectCard(dataCopy);
+                updateStats();
+                replaceCard($card, $(createCardElement(dataCopy)));
+                break;
+        }
+    });
+    $("#card-selection").delegate(".star", "click", null, function () {
+        var level = $(this).index() + 1;
+        updateLevel(this.closest(".perk-card"), level, true);
+    });
 
     /**
      * select card when clicking in #card-selection
