@@ -1,6 +1,7 @@
 //////////////////////////////////////////////////
 $(function () {
     loadData();
+
     init();
 
 });
@@ -66,10 +67,12 @@ function loadData() {
                 //represent which special stat this perk card belongs.
                 perk.special = i;
                 perk.level = 1;
+                perk.id = j;
                 selectable[i].push(perk);
             }
-            showSelectableCards(SpecialEnum.STRENGTH);
         }
+        handleVariable();
+        showSelectableCards(SpecialEnum.STRENGTH);
     })
 }
 
@@ -167,7 +170,7 @@ function init() {
     });
 
     /**
-     * TODO: remove card when clicking a remove button in #perk-deck
+     *remove card when clicking a remove button in #perk-deck
      */
     $perkSection.delegate(".remove-btn", "click", null, function () {
         var $card = $(this).closest(".perk-card");
@@ -440,6 +443,7 @@ function selectCard(cardData) {
     removeCardFromArray(cardData, selectable[cardData.special]);
     addCardToArray(cardData, selected[cardData.special]);
     updateStats();
+    updateUrl();
 }
 
 /**
@@ -452,6 +456,7 @@ function deselectCard(cardData) {
     removeCardFromArray(cardData, selected[cardData.special]);
     addCardToArray(cardData, selectable[cardData.special]);
     updateStats();
+    updateUrl();
 }
 
 /**
@@ -479,16 +484,124 @@ function updateStats() {
     $("#points").text(points);
 }
 
+//for updating URL and reading from URL
+//set section:
 /**
- * update url link to save build information
+ * change the url to save selection data
  */
-function updateURL() {
-
+function updateUrl() {
+    var selectionData = getSelectionData();
+    var string = parseSelectionData(selectionData);
+    setParameter(string);
 }
 
 /**
- * process the url parameters to load saved build
+ * return selected card special, id, and level in an array
  */
-function processURL() {
+function getSelectionData() {
+    var data = [];
+    selected.forEach(function (selectedSpecial) {
+        selectedSpecial.forEach(function (cardData) {
+            data.push(cardData.special);
+            data.push(cardData.id);
+            data.push(cardData.level);
+        });
+    });
+    return data;
+}
 
+/**
+ * Parse selectionData into a long string
+ * @param selectionData
+ */
+function parseSelectionData(selectionData) {
+    if(selectionData == null) {
+        return null;
+    }
+
+    var string = "";
+    while(selectionData.length > 0) {
+        var i = selectionData.shift();
+        var c = dictionary.charAt(i);
+        string+=c;
+    }
+    return string;
+}
+
+/**
+ * put the data into address bar without reloading the page
+ * @param parameter data string
+ */
+function setParameter(parameter) {
+    window.history.replaceState(null, '辐射76加点模拟器', '?data=' + parameter);
+}
+
+//read section:
+/**
+ * read url data and select cards accordingly.
+ */
+function handleVariable() {
+    var string = getParameter();
+    var selectionData = parseString(string);
+    readSelectionData(selectionData);
+}
+
+/**
+ * get data string from url
+ */
+function getParameter() {
+    var url = new URL(window.location.href);
+    return url.searchParams.get("data");
+}
+
+/**
+ * parse a string into selection data.
+ */
+function parseString(string) {
+    if(string == null) {
+        return null;
+    }
+
+    var selectionData = [];
+    for (var i = 0; i < string.length; i++) {
+        // noinspection JSUnresolvedFunction
+        var c = string.charAt(i);
+        var num = dictionary.indexOf(c);
+        selectionData.push(num);
+    }
+    return selectionData;
+}
+
+
+/**
+ * read and process selectionData into selected perk cards.
+ * Since it is only called in when the page is loaded, a clear deck action is not needed.
+ * @param selectionData
+ */
+function readSelectionData(selectionData) {
+    if(selectionData == null) {
+        return;
+    }
+
+    console.log(selectionData);
+
+    while(selectionData.length > 0) {
+        var special = selectionData.shift();
+        var id = selectionData.shift();
+        var level = selectionData.shift();
+
+        //find perk card:
+        var card = selectable[special].filter(function (cardData) {
+            return cardData.id === id;
+        })[0];
+
+        if(card !== undefined) {
+            card.level = level;
+            if(checkStats(card) === 0) {
+                selectCard(card);
+                $(".perk-deck").eq(card.special).append(createCardElement(card));
+            }
+        }
+    }
+    updateStats();
 }
