@@ -77,38 +77,41 @@ function loadData() {
  * setup events
  */
 function init() {
+    var $perkSection = $("#perk-section");
+    var $cardSelection = $("#card-selection");
+
     /**
      * show selectable cards when clicking a stats card.
      */
     $("#stats-section").delegate(".stats-card", "click", function () {
         showSelectableCards($(this).index());
-    })
+    });
 
     /**
      * show leveled card info when hovering on stars.
      */
-    $("#perk-section").delegate(".star", "mouseenter", null, function () {
+    $perkSection.delegate(".star", "mouseenter", null, function () {
         var displayLevel = $(this).index() + 1;
         updateLevel(this.closest(".perk-card"), displayLevel);
     });
-    $("#card-selection").delegate(".star", "mouseenter", null, function () {
+    $cardSelection.delegate(".star", "mouseenter", null, function () {
         var displayLevel = $(this).index() + 1;
         updateLevel(this.closest(".perk-card"), displayLevel);
     });
-    $("#perk-section").delegate(".star", "mouseleave", null, function () {
+    $perkSection.delegate(".star", "mouseleave", null, function () {
         updateLevel(this.closest(".perk-card"), undefined);
         return false;
     });
-    $("#card-selection").delegate(".star", "mouseleave", null, function () {
+    $cardSelection.delegate(".star", "mouseleave", null, function () {
         updateLevel(this.closest(".perk-card"), undefined);
         return false;
     });
     //to deal with mouseleave inconsistency
-    $("#perk-section").delegate(".perk-card-footer", "mouseleave", null, function () {
+    $perkSection.delegate(".perk-card-footer", "mouseleave", null, function () {
         updateLevel(this.closest(".perk-card"), undefined);
         return false;
     });
-    $("#card-selection").delegate(".perk-card-footer", "mouseleave", null, function () {
+    $cardSelection.delegate(".perk-card-footer", "mouseleave", null, function () {
         updateLevel(this.closest(".perk-card"), undefined);
         return false;
     });
@@ -116,7 +119,7 @@ function init() {
     /**
      * update card level on clicking stars
      */
-    $("#perk-section").delegate(".star", "click", null, function () {
+    $perkSection.delegate(".star", "click", null, function () {
         var $this = $(this);
         var targetLevel = $(this).index() + 1;
         var $card = $this.closest(".perk-card");
@@ -136,7 +139,7 @@ function init() {
                 break;
         }
     });
-    $("#card-selection").delegate(".star", "click", null, function () {
+    $cardSelection.delegate(".star", "click", null, function () {
         var level = $(this).index() + 1;
         updateLevel(this.closest(".perk-card"), level, true);
     });
@@ -144,7 +147,7 @@ function init() {
     /**
      * select card when clicking in #card-selection
      */
-    $("#card-selection").delegate(".perk-card", "click", null, function () {
+    $cardSelection.delegate(".perk-card", "click", null, function () {
         var $this = $(this);
         var cardData = $this.data("cardData");
         switch (checkStats(cardData)) {
@@ -166,6 +169,11 @@ function init() {
     /**
      * TODO: remove card when clicking a remove button in #perk-deck
      */
+    $perkSection.delegate(".remove-btn", "click", null, function () {
+        var $card = $(this).closest(".perk-card");
+        deselectCard($card.data("cardData"));
+        $card.remove();
+    })
 }
 
 /**
