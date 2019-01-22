@@ -1,151 +1,175 @@
 <!doctype html>
-<html lang="ch">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>辐射76加点模拟器</title>
-        <meta name="description" content="辐射76在线加点模拟器..点击下面的Special字样切换相应种类的卡片.
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>辐射76加点模拟器</title>
+    <meta name="description" content="辐射76在线加点模拟器..点击下面的Special字样切换相应种类的卡片.
          点击卡片来添加/删除卡片, 点击星星来选择卡片等级.如果需要重新加点可以使用网页最下方的'重新加点'按钮.
          如果你喜欢辐射76, 那就加入我们的QQ群吧: 953980582 (辐射76 交易所)">
 
-        <!--bootstrap and JQuery-->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
-        <!--font-->
-        <link href="https://fonts.googleapis.com/css?family=ZCOOL+KuaiLe" rel="stylesheet">
+    <!--font-->
+    <link href="https://fonts.googleapis.com/css?family=ZCOOL+KuaiLe" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:700" rel="stylesheet">
 
-        <!--custom-->
-        <link rel="stylesheet" href="css/main.css?v=1.09">
-        <script src="js/main.js?v=1.12"></script>
-    </head>
-    
-    <body>
-        <div class="container">
-            <div class="text-center bg-warning p-5 rounded mt-2" id="browser">
-                <h4>看起来你用的浏览器有点老了呢, 如果这个页面显示不正常, 请尝试下载最新的浏览器.</h4>
-                <span>由于IE没有ES6支持, 所以IE等浏览器无法正常显示这个页面</span>
-            </div>
+    <style>
+        #browser-check {
+            display: none;
+        }
+    </style>
 
-            <script src="js/browserCheck.js?v=1.01"></script>
+    <link rel="stylesheet" href="css/main.css?v=1.10">
+    <script src="js/main.js?v=1.13"></script>
+</head>
 
-            <div style="background-color: #5b8f92 !important; font-family: 'ZCOOL KuaiLe', cursive;" id="header">
-                <h1 class="font-weight-bold text-center">辐射76加点模拟器</h1>
-                <div id="carouselControls" class="carousel slide" data-ride="carousel" data-interval="10000">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active text-center">
-                            点击下面的Special字样选择相应种类的卡片
-                        </div>
-                        <div class="carousel-item text-center">
-                            点击卡片来添加/删除卡片, 点击星星来选择卡片等级
-                        </div>
-                        <div class="carousel-item text-center">
-                            在辐射76中, 超过50级后不能再增加属性, 但是依旧可以获得卡片, 并且已经获得的卡片可以随时调换
-                        </div>
-                        <div class="carousel-item text-center">
-                            你可以通过复制地址栏内的网页地址来分享你的加点
-                        </div>
-                        <div class="carousel-item text-center">
-                            如果你喜欢辐射76, 那就加入我们的QQ群吧: 953980582 (辐射76 交易所)
-                        </div>
-                        <div class="carousel-item text-center">
-                            如果需要重新加点可以使用网页最下方的"重新加点"按钮
-                        </div>
+<body>
+<div class="container-fluid">
+    <div class="text-center bg-warning p-5 rounded mt-2" id="browser-check">
+        <h4>您现在正使用的游览器版本比较旧, 因此本页面可能显示不正常</h4>
+        <span>请升级您的游览器</span>
+    </div>
+
+    <script>
+        "use strict";
+        try {
+            eval("var foo = (x)=>x+1");
+        } catch (e) {
+            document.getElementById("browser-check").style.display = "block";
+        }
+    </script>
+
+    <header class="jumbotron text-center" id="header">
+        <h1 class="font-weight-bold">辐射76加点模拟器</h1>
+        <a class="" href="https://github.com/FanghanHu/Fallout76CardBuilder/commits/master">(v1.01 更新:1/22/2019)</a>
+        <div id="carouselControls" class="carousel slide" data-ride="carousel" data-interval="10000">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="d-flex h-100 align-items-center justify-content-center">
+                        点击下面的Special字样选择相应种类的卡片
                     </div>
-                    <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true" id="left-arrow"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true" id="right-arrow"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
+                </div>
+                <div class="carousel-item">
+                    <div class="d-flex h-100 align-items-center justify-content-center">
+                        点击卡片来添加/删除卡片, 点击星星来选择卡片等级
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="d-flex h-100 align-items-center justify-content-center">
+                        在辐射76中, 超过50级后不能再增加属性, 但是依旧可以获得卡片, 并且已经获得的卡片可以随时调换
+                    </div>
+
+                </div>
+                <div class="carousel-item">
+                    <div class="d-flex h-100 align-items-center justify-content-center">
+                        你可以通过复制地址栏内的网页地址来分享你的加点
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="d-flex h-100 align-items-center justify-content-center">
+                        如果你喜欢辐射76, 那就加入我们的QQ群吧: 953980582 (辐射76 交易所)
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="d-flex h-100 align-items-center justify-content-center">
+                        如果需要重新加点可以使用网页最下方的"重新加点"按钮
+                    </div>
                 </div>
             </div>
-
-
-
-            <div class="d-inline justify-content-around d-md-flex" id="specials">
-
-                <div class="stats-card bg-s" id="strength" onclick="showCards(SpecialEnum.STRENGTH)">
-                    <h2>力量</h2>
-                    <h1>S</h1>
-                    <p><span class="special-amount" id="s-amount">1</span>点</p>
-                </div>
-                <div class="stats-card bg-p" id="perception" onclick="showCards(SpecialEnum.PERCEPTION)">
-                    <h1>P</h1>
-                    <h2>感知</h2>
-                    <p><span class="special-amount" id="p-amount">1</span>点</p>
-                </div>
-                <div class="stats-card bg-e" id="endurance" onclick="showCards(SpecialEnum.ENDURANCE)">
-                    <h1>E</h1>
-                    <h2>耐力</h2>
-                    <p><span class="special-amount" id="e-amount">1</span>点</p>
-                </div>
-                <div class="stats-card bg-c" id="charisma" onclick="showCards(SpecialEnum.CHARISMA)">
-                    <h1>C</h1>
-                    <h2>魅力</h2>
-                    <p><span class="special-amount" id="c-amount">1</span>点</p>
-                </div>
-                <div class="stats-card bg-i" id="intelligence" onclick="showCards(SpecialEnum.INTELLIGENCE)">
-                    <h1>I</h1>
-                    <h2>智力</h2>
-                    <p><span class="special-amount" id="i-amount">1</span>点</p>
-                </div>
-                <div class="stats-card bg-a" id="agility" onclick="showCards(SpecialEnum.AGILITY)">
-                    <h1>A</h1>
-                    <h2>敏捷</h2>
-                    <p><span class="special-amount" id="a-amount">1</span>点</p>
-                </div>
-                <div class="stats-card bg-l" id="luck" onclick="showCards(SpecialEnum.LUCK)">
-                    <h1>L</h1>
-                    <h2>幸运</h2>
-                    <p><span class="special-amount" id="l-amount">1</span>点</p>
-                </div>
-            </div>
-
-            <div id="points-display" style="margin-right: 2rem;">
-                <span style="font-weight: 700; color: darkgray;">剩余点数: <span id="points">49</span></span>
-            </div>
-
-            <div class="d-md-flex justify-content-around" id="decks">
-                <div class="deck" id="s-deck">
-
-                </div>
-                <div class="deck" id="p-deck">
-
-                </div>
-                <div class="deck" id="e-deck">
-
-                </div>
-                <div class="deck" id="c-deck">
-
-                </div>
-                <div class="deck" id="i-deck">
-
-                </div>
-                <div class="deck" id="a-deck">
-
-                </div>
-                <div class="deck" id="l-deck">
-
-                </div>
-            </div>
-
-            <div id="card-selections">
-
-            </div>
-            <div class="d-flex justify-content-center my-2">
-                <a class="mx-2 btn btn-primary" href="https://github.com/FanghanHu/Fallout76CardBuilder/issues">反馈</a>
-                <a class="mx-2 btn btn-info" href="index.html">重新加点</a>
-                <button class="mx-2 btn btn-success" onclick="copyLink()">分享</button>
-            </div>
-            <span class="d-block text-center mt-5">未经许可, 请勿转载</span>
-            <span class="d-block text-center mb-3">Copyright 2018, Fanghan Hu</span>
-            <!--suppress HtmlFormInputWithoutLabel -->
-            <input type="text" value=":)" id="url-selector">
+            <a class="carousel-control-prev control" href="#carouselControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true" id="left-arrow"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next control" href="#carouselControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true" id="right-arrow"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
-    </body>
+    </header>
+
+    <div id="display-section">
+        <div id="points-section">
+            剩余点数: <span id="points">49</span>点
+        </div>
+        <div id="stats-section">
+            <div class="stats-card">
+                <div class="stats-chinese-name">力量</div>
+                <div class="stats-english-name">S</div>
+                <div class="stats-display"><span class="stats">1</span>点</div>
+            </div>
+            <div class="stats-card">
+                <div class="stats-chinese-name">感知</div>
+                <div class="stats-english-name">P</div>
+                <div class="stats-display"><span class="stats">1</span>点</div>
+            </div>
+            <div class="stats-card">
+                <div class="stats-chinese-name">耐力</div>
+                <div class="stats-english-name">E</div>
+                <div class="stats-display"><span class="stats">1</span>点</div>
+            </div>
+            <div class="stats-card">
+                <div class="stats-chinese-name">魅力</div>
+                <div class="stats-english-name">C</div>
+                <div class="stats-display"><span class="stats">1</span>点</div>
+            </div>
+            <div class="stats-card">
+                <div class="stats-chinese-name">智力</div>
+                <div class="stats-english-name">I</div>
+                <div class="stats-display"><span class="stats">1</span>点</div>
+            </div>
+            <div class="stats-card">
+                <div class="stats-chinese-name">敏捷</div>
+                <div class="stats-english-name">A</div>
+                <div class="stats-display"><span class="stats">1</span>点</div>
+            </div>
+            <div class="stats-card">
+                <div class="stats-chinese-name">幸运</div>
+                <div class="stats-english-name">L</div>
+                <div class="stats-display"><span class="stats">1</span>点</div>
+            </div>
+        </div>
+        <div id="perk-section">
+            <div class="perk-deck">
+            </div>
+            <div class="perk-deck">
+            </div>
+            <div class="perk-deck">
+            </div>
+            <div class="perk-deck">
+            </div>
+            <div class="perk-deck">
+            </div>
+            <div class="perk-deck">
+            </div>
+            <div class="perk-deck">
+            </div>
+        </div>
+    </div>
+
+    <div id="control-section">
+        <h4 class="d-inline-block w-50 pl-2 text-white" style="font-family: 'ZCOOL KuaiLe',serif">请选择卡片:</h4>
+        <div class="d-inline-flex w-50 pr-2 flex-row-reverse" id="control-buttons">
+            <a class="mx-2 btn btn-danger text-white" onclick='if(confirm("你确定要放弃目前的加点吗?")) window.open("index.html", "_self");'>重新加点</a>
+            <a class="mx-2 btn btn-primary text-white" href="https://github.com/FanghanHu/Fallout76CardBuilder/issues">反馈</a>
+            <button class="mx-2 btn btn-success text-white" onclick="copyLink()">分享</button>
+        </div>
+        <div id="card-selection">
+
+        </div>
+    </div>
+
+    <footer class="text-center">
+        <span class="d-block mt-5">未经许可, 请勿转载</span>
+        <span class="d-block mb-2">Copyright 2018, Fanghan Hu</span>
+    </footer>
+    <!--suppress HtmlFormInputWithoutLabel -->
+    <input type="text" value=":)" id="url-selector" style="width: 1px; border: none">
+</div>
+</body>
 </html>

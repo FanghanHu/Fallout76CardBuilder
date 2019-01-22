@@ -1,332 +1,346 @@
-* {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+.container-fluid {
+    margin: 0;
+    padding: 0;
 }
 
-body {
+
+/*header*/
+.carousel-inner {
+    margin: 0 auto;
+    width: 90%;
 
 }
 
-#url-selector {
-    display:none;
-    -webkit-touch-callout: default;
-    -webkit-user-select: auto;
-    -moz-user-select: auto;
-    -ms-user-select: auto;
-    user-select: auto;
+.control {
+    width: 5%;
 }
 
-#browser {
-    display: none;
+.carousel-item {
+    text-align: center;
+    height: 3.3em;
+    line-height: 1.1em;
 }
 
-#header {
+header {
+    margin: 2rem;
+    padding: 2rem !important;
+    background-color: #5b8f92 !important;
+    font-family: 'ZCOOL KuaiLe', cursive;
+    color: white;
+}
+
+header a {
+    color: white;
+}
+
+header a:hover {
+    color: #d38c00;
+}
+
+/*display*/
+#display-section {
+    margin: 1rem 2rem;
+
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem 1rem;
-    color: white;
-    border-radius: 0.5rem;
-    margin: 2rem auto;
 }
 
-#carouselControls {
-    width: 90%;
-}
-
-/*stats*/
-.stats-card{
-    color: aliceblue;
-    display: block;
-    position: relative;
-    border-radius: 1rem;
-    height: 11rem;
-    width: 8rem;
-    transition: color 0.5s;
-}
-
-.stats-card:hover {
-    color: #28ba28;
-    transition: color 0.5s;
-}
-
-#specials>div>h1{
-    margin: 0;
-    z-index: 1;
-    font-size: 10rem;
-    position: relative;
-    top: 50%;
-    transform: perspective(1px) translateY(-50%);
-    text-align: center;
-    font-weight: 700;
-}
-
-#specials>div>h2{
-
-    margin: 0;
-    z-index: 2;
+#points-section {
+    margin: 1rem;
     font-size: 2rem;
-    position: absolute;
-    top: 0;
-    font-weight: 700;
-    width: 100%;
-    text-align: center;
-}
-
-#specials>div>p {
-    position: relative;
-    bottom: 1rem;
-    padding: 0;
-    margin: 0;
-    text-align: center;
-    font-size: 1.5rem;
-    color: black;
-}
-
-#points-display {
-    margin-top: 3rem;
-    font-size: 1.5rem;
+    font-family: "Noto Sans SC", sans-serif;
+    color: #a8a8a8;
+    font-weight: bold;
+    height: 2rem;
     text-align: right;
 }
 
-/*Decks*/
-.deck {
-    position: relative;
-    margin-top: 0.5rem;
-    flex-basis: 0;
-    flex-grow: 1;
-    padding: 0.5rem;
-
+#stats-section {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
-.deck>.perk-card:first-child {
-    margin-top: 0;
-}
-
-/*Cards*/
-.perk-card {
-    position: relative;
-    border-radius: 0.5rem;
-    box-shadow: 0 0 10px gray;
-    background-color: white;
-    margin-top: -8.5rem;
-    transition: margin-top 0.5s;
-}
-
-.perk-card:hover+.perk-card {
-    margin-top: 0;
-    transition: margin-top 0.5s;
-}
-
-.show + .perk-card {
-    margin-top: 0;
-    transition: margin-top 0.5s ease-out;
-}
-
-.card-title {
-    font-size: 1.5rem;
-    border-radius:0.5rem 0.5rem 0 0;
-    padding: 1px;
-    z-index: 0;
-    margin: 0;
-}
-
-.cost {
-    display: inline-block;
-    border-radius: 0.5rem;
-    background-color: white;
-    text-align: center;
-    width: 2rem;
-    height: 2rem;
-    line-height: 2rem;
-    margin-left: 0.2rem;
-    font-weight: 700;
-    z-index: 0;
-}
-
-.card-name {
-    font-size: 0.8rem;
-    margin-left: 0.3rem;
-    font-weight: 700;
-    color: aliceblue;
-}
-
-.card-desc {
-    padding: 1rem 0.9rem;
-    font-size: 0.8rem;
-    height: 6rem;
-}
-
-.star-field {
-    text-align: center;
-    color: white;
-    font-size: 1.5rem;
-    border-radius: 0 0 0.5rem 0.5rem;
-    padding: 1px;
-    height: 2.5rem;
-}
-
-.star {
-    color: #bebebe;
-    text-shadow: 0 0 5px gray;
-}
-
-.star-active {
-    color: #ffff25;
-    text-shadow:
-   -1px -1px 1px #b9bf28,  
-    1px -1px 1px #b9bf28,
-    -1px 1px 1px #b9bf28,
-     1px 1px 1px #b9bf28;
-}
-
-/*Card selections*/
-#card-selections {
-    margin-top: 3rem;
-    background-color: darkgray;
-    padding: 1rem;
+.stats-card {
+    flex: 0 0 8rem;
     border-radius: 1rem;
-    box-shadow: 0 0 10px darkgray;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: aliceblue;
+    transition: all 0.5s ease-out;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
-#card-selections>.perk-card {
-    transition: box-shadow 0.5s;
-    width: 9.2rem;
-    height: 13rem;
-    margin: 1rem 0.2rem;
-    display: inline-block;
+.stats-card:hover {
+    cursor: pointer;
+    box-shadow: #00d400 0 0 10px;
+    color: #00d400;
+    transition: all 0.5s ease-out;
 }
 
-#card-selections>.perk-card:hover {
-    box-shadow: 0 0 30px white;
-    transition: box-shadow 0.5s;
+.stats-chinese-name {
+    white-space: nowrap;
+    font-family: "Noto Sans SC", sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 1.1em;
 }
 
-#card-selections .card-name {
-    font-size: 0.9rem;
+.stats-english-name {
+    font-size: 10rem;
+    line-height: 0.6em;
+    font-weight: bold;
 }
 
-#card-selections .card-desc {
-    height: 8rem;
+.stats-display {
+    color: black;
+    font-size: 1.5rem;
+    position: relative;
+    bottom: -2rem;
 }
 
-/*Colors*/
-.bg-s {
+#perk-section {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.perk-deck {
+    margin-top: 1rem;
+    flex: 0 0 calc(10rem + 6px);
+}
+
+.perk-deck .perk-card {
+    margin-top: -10.5rem;
+}
+
+.perk-deck .perk-card:first-child {
+    margin-top: 0;
+}
+
+.stats-card:nth-child(1) {
     background-color: #618869;
 }
 
-.bg-p {
+.stats-card:nth-child(2) {
     background-color: #595034;
 }
 
-.bg-e {
+.stats-card:nth-child(3) {
     background-color: #5CA7AF;
 }
 
-.bg-c {
+.stats-card:nth-child(4) {
     background-color: #CA7336;
 }
 
-.bg-i {
+.stats-card:nth-child(5) {
     background-color: #929175;
 }
 
-.bg-a {
+.stats-card:nth-child(6) {
     background-color: #C18768;
 }
 
-.bg-l {
+.stats-card:nth-child(7) {
     background-color: #9390A4;
 }
 
-.color-s {
+/*control*/
+#control-section {
+    margin: 1rem 2rem;
+    padding: 1rem;
+    font-size: 0;
+    border-radius: 0.3rem;
+    background-color: #5a6268;
+}
+
+#card-selection {
+    margin: 1rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-basis: max-content;
+    justify-content: space-around;
+}
+
+#card-selection .perk-card {
+    margin-top: 1rem;
+}
+
+/*perk-card*/
+.strength .active-star {
     color: #618869;
 }
 
-.color-p {
+.strength .perk-card-header {
+    background-color: #618869;
+
+}
+
+.perception .active-star {
     color: #595034;
 }
 
-.color-e {
+.perception .perk-card-header {
+    background-color: #595034;
+}
+
+.endurance .active-star {
     color: #5CA7AF;
 }
 
-.color-c {
+.endurance .perk-card-header {
+    background-color: #5CA7AF;
+}
+
+.charisma .active-star {
     color: #CA7336;
 }
 
-.color-i {
+.charisma .perk-card-header {
+    background-color: #CA7336;
+}
+
+.intelligence .active-star {
     color: #929175;
 }
 
-.color-a {
+.intelligence .perk-card-header {
+    background-color: #929175;
+}
+
+.agility .active-star {
     color: #C18768;
 }
 
-.color-l {
+.agility .perk-card-header {
+    background-color: #C18768;
+}
+
+.luck .active-star {
     color: #9390A4;
 }
 
-@media only screen and (max-width: 1007px) {
+.luck .perk-card-header {
+    background-color: #9390A4;
+}
 
-    #carouselControls {
-        height: 4rem;
-        justify-content: center;
-        align-items: center;
+.perk-card {
+    position: relative;
+    border-radius: 0.5rem;
+    background-color: white;
+    width: 10rem;
+    box-shadow: 1px 1px 5px #555;
+}
+
+.perk-deck .perk-card:hover {
+    transform: translateX(-3px) translateY(-3px);
+    box-sizing: content-box;
+    border: 3px solid yellow;
+    z-index: 2;
+}
+
+.perk-card-header {
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.perk-card-cost {
+    display: inline-block;
+    background: white;
+    border-radius: 0.5rem;
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    text-align: center;
+    margin: 0.2rem;
+}
+
+.perk-card-name {
+    font-family: "Noto Sans SC", sans-serif;
+    font-size: 0.9rem;
+    color: white;
+}
+
+.perk-card-body {
+    position: relative;
+    height: 8rem;
+}
+
+.perk-card-body > p {
+    margin: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.perk-card-body > p::before {
+    content: ' ';
+    width: 1rem;
+    display: inline-block;
+}
+
+.remove-btn {
+    position: absolute;
+    display: block;
+    bottom: 0.5rem;
+    width: 4rem;
+    left: 3rem;
+    text-align: center;
+    font-size: 2rem;
+    color: white;
+    box-shadow: 1px 1px 5px gray;
+    border-radius: 0.4rem;
+    background-color: gray;
+    transition: all 0.7s;
+}
+
+.remove-btn:hover {
+    background-color: #666;
+    transition: all 0.7s;
+}
+
+#card-selection .remove-btn {
+    display: none;
+}
+
+.perk-card-footer {
+    display: flex;
+    justify-content: center;
+    height: 1.8rem;
+    font-size: 0;
+}
+
+.star {
+    font-size: 1.3rem;
+    color: gray;
+    padding: 0;
+    margin-bottom: 0.2rem;
+}
+
+/*footer*/
+
+
+@media only screen and (min-width: 1280px) {
+    /*wide screen*/
+    .container-fluid {
+        width: 1280px;
+        margin: 0 auto;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    /*small screen*/
+    header {
+        margin: 0;
     }
 
-    #left-arrow {
-        position: relative;
-        left: -80%;
+    #control-section {
+        margin: 0;
+        padding: 0.5rem;
     }
 
-    #right-arrow {
-        position: relative;
-        right: -80%;
-    }
-
-
-    #specials {
-        flex-direction: column;
-    }
-    
-    .stats-card{
-        height: 3rem;
-        width: 100%;
-        margin-bottom: 0.5rem;
-    }
-    
-    #specials>div>h1 {
-        display: none;
-    }
-    
-    #specials>div>p {
-        width: 3rem;
-        position: relative;
-        top: 0.1rem;
-        left: 15rem;
-        color: aliceblue;
-    }
-    
-    .card-name {
-        font-size: 1rem;
-    }
-    
-    #decks {
-        flex-direction: column;
-        margin: 0 0 0.5rem 0;
-        padding: 0;
-    }
-
-    #card-selections>.perk-card {
-        width: 8rem;
-    }
-
-    #card-selections .card-name {
-        font-size: 0.7rem;
+    #control-section > * {
+        padding: 0 !important;
     }
 }
