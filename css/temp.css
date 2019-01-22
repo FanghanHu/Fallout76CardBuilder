@@ -227,16 +227,17 @@ header a:hover {
 }
 
 .perk-card {
+    position: relative;
     border-radius: 0.5rem;
     background-color: white;
     width: 10rem;
-    position: relative;
     box-shadow: 1px 1px 5px #555;
 }
 
 .perk-deck .perk-card:hover {
-    box-sizing: border-box;
-    box-shadow: 1px 1px 5px #8b8b00;
+    transform: translateX(-3px) translateY(-3px);
+    box-sizing: content-box;
+    border: 3px solid yellow;
     z-index: 2;
 }
 

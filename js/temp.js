@@ -158,14 +158,25 @@ function updateLevel(cardElement, level, isRealLevel) {
     if(isRealLevel) {
         if(cardData.level !== level) {
             cardData.level = level;
-            $cardElement.replaceWith(createCardElement(cardData));
+            replaceCard($cardElement, $(createCardElement(cardData)));
         }
     } else {
         if(cardData.displayLevel !== level) {
             cardData.displayLevel = level;
-            $cardElement.replaceWith(createCardElement(cardData));
+            replaceCard($cardElement, $(createCardElement(cardData)));
         }
     }
+}
+
+/**
+ * replace the content of $oldCard with content from $newCard
+ * @param $oldCard
+ * @param $newCard
+ */
+function replaceCard($oldCard, $newCard) {
+    $oldCard.data("cardData", $newCard.data("cardData"));
+    $oldCard.empty();
+    $oldCard.append($newCard.children());
 }
 
 /**
