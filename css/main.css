@@ -88,8 +88,10 @@ header a:hover {
 }
 
 .stats-english-name {
+    font-family: arial, sans-serif;
     font-size: 10rem;
-    line-height: 0.6em;
+    line-height: 9rem;
+    height: 6.5rem;
     font-weight: bold;
 }
 
