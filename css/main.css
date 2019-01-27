@@ -235,6 +235,7 @@ header a:hover {
     background-color: white;
     width: 10rem;
     box-shadow: 1px 1px 5px #555;
+    cursor: pointer;[]
 }
 
 .perk-deck .perk-card:hover {
