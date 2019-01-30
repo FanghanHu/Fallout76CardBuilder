@@ -144,7 +144,7 @@ function init() {
     });
     $cardSelection.delegate(".star", "click", null, function () {
         var level = $(this).index() + 1;
-        updateLevel(this.closest(".perk-card"), level, true);
+        updateLevel($(this).closest(".perk-card"), level, true);
     });
 
     /**
