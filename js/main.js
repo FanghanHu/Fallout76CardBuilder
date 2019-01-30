@@ -95,27 +95,27 @@ function init() {
      */
     $perkSection.delegate(".star", "mouseenter", null, function () {
         var displayLevel = $(this).index() + 1;
-        updateLevel(this.closest(".perk-card"), displayLevel);
+        updateLevel($(this).closest(".perk-card"), displayLevel);
     });
     $cardSelection.delegate(".star", "mouseenter", null, function () {
         var displayLevel = $(this).index() + 1;
-        updateLevel(this.closest(".perk-card"), displayLevel);
+        updateLevel($(this).closest(".perk-card"), displayLevel);
     });
     $perkSection.delegate(".star", "mouseleave", null, function () {
-        updateLevel(this.closest(".perk-card"), undefined);
+        updateLevel($(this).closest(".perk-card"), undefined);
         return false;
     });
     $cardSelection.delegate(".star", "mouseleave", null, function () {
-        updateLevel(this.closest(".perk-card"), undefined);
+        updateLevel($(this).closest(".perk-card"), undefined);
         return false;
     });
     //to deal with mouseleave inconsistency
     $perkSection.delegate(".perk-card-footer", "mouseleave", null, function () {
-        updateLevel(this.closest(".perk-card"), undefined);
+        updateLevel($(this).closest(".perk-card"), undefined);
         return false;
     });
     $cardSelection.delegate(".perk-card-footer", "mouseleave", null, function () {
-        updateLevel(this.closest(".perk-card"), undefined);
+        updateLevel($(this).closest(".perk-card"), undefined);
         return false;
     });
 
@@ -124,7 +124,7 @@ function init() {
      */
     $perkSection.delegate(".star", "click", null, function () {
         var $this = $(this);
-        var targetLevel = $(this).index() + 1;
+        var targetLevel = $this.index() + 1;
         var $card = $this.closest(".perk-card");
         var dataCopy = Object.assign({}, $card.data("cardData"));
         dataCopy.level = targetLevel;
